@@ -34,24 +34,17 @@ export default function Home() {
               <div className={styles.title}>
                 <h1>
                   Soluções tecnológicas <br/>
-                  para unificar processos <br/>
+                  para unificar os processos <br/>
                   da sua empresa
                 </h1>
                 <div className={styles.saibaMais}>
-                  <Link href="#o-que-fazemos"> 
+                  <Link href="/contato"> 
                     <a>
                       ENTRE EM CONTATO
                     </a>
                   </Link> 
                 </div>
               </div>
-              {/* <div className={styles.containerButton}>
-                <Link href="/contato">
-                  <a>
-                    <div></div>
-                  </a>
-                </Link>
-              </div> */}
             </div>
           </div>
         </div>
@@ -79,13 +72,13 @@ export default function Home() {
            <p style={{ textAlign: "center", marginBottom: "3rem", color: "#FFF", fontSize: "1.4rem" }}>
              Nosso time está focado em gerar transformação. <br/>
              Sempre pensando em um relacionamento de confiança e parceria. <br />
-             Com amor e dedicação no que fazemos, buscamos em tornar sonho em realidade. <br />
+             Com amor e dedicação no que fazemos, buscamos tornar sonhos em realidade. <br />
              A satisfação de nossos clientes é o que nos move. 
            </p> 
            <div className={`${styles.cardsCircle}`}>
              <CardCircle title="Agilidade" content="Focamos na transformação, em acelerar resultados." />
-             <CardCircle title="Simplicidade" content="Focamos naquilo que realmente importa e gere resultados." />
-             <CardCircle title="Compromisso" content="Nosso cliente, nosso projeto! Trabalhamos como dono do produto." />
+             <CardCircle title="Simplicidade" content="Focamos naquilo que realmente importa e gera resultados." />
+             <CardCircle title="Compromisso" content="Nosso cliente, nosso projeto! Trabalhamos como donos do produto." />
            </div>
          </div>
        </section>
@@ -124,6 +117,10 @@ export default function Home() {
               <div className="col-3"><b>CLOUD</b></div>
               <div className="col-9" style={{ fontWeight: "100" }}>MICROSOFT AZURE - AMAZON AWS</div>
             </div>
+            <div className="row">
+              <div className="col-3"><b>QA</b></div>
+              <div className="col-9" style={{ fontWeight: "100" }}>DOTNET - PYTHON</div>
+            </div>
           </div>
          </div>
        </section>
@@ -156,79 +153,9 @@ export default function Home() {
        <section>
          <div className="container">
           <h1 className="section-title secondary" >Envie seus dados <br /> que entramos em contato com você.</h1>
-
           <FormContato className={styles.formulario} />
-
-          {/* <form id="formulario" className={`${styles.formulario}`}>
-            <div className="row">
-                <div className="col-6">
-                  <label>Nome</label><br/>
-                  <input id="nome" name="nome" required />
-                </div>
-                <div className="col-6"> 
-                  <label>E-mail</label><br/>
-                  <input id="email" nome="email" type="email" required />
-                </div>
-                <div className="col-6">
-                  <label>Empresa</label>
-                  <input id="empresa" nome="empresa" />
-                </div>
-                <div className="col-6">
-                  <label>Telefone</label>
-                  <input id="telefone" nome="telefone" required />
-                </div>
-                <div className="col-12">
-                  <label>Assunto</label>
-                  <input id="assunto" nome="assunto" required />
-                </div>
-                <div className="col-12">
-                  <label>Mensagem</label>
-                  <textarea id="mensagem" nome="mensagem" required />
-                </div>
-                <div className="col-12">
-                  <button type="submit">Enviar</button>
-                </div>
-            </div>
-            </form> */}
          </div>
        </section>
-
-       {/* <section>
-         <div className="container">
-            <h1 className="section-title">Tecnologias e aplicações</h1>
-         </div>
-       </section> */}
-       {/* 
-       <section style={{ backgroundColor: "#191C24", minHeight: "10vh" }}>
-          <div className="container">
-            <div>
-              <h1 className="section-title" style={{ color: "#FFF" }}>Clientes atendidos</h1>
-              <hr style={{ backgroundColor: "#FFF" }} />
-              <div className={styles.clientesAtendidos}>
-                  <img src="/logo-antaresgolden.png" alt="logo cliente Antares Golden" />
-                  <img src="/logo-autonomoz.png" alt="logo cliente Autonomoz" />
-                  <img src="/logo-brentservice.png" width="120px" alt="logo cliente Brent Service" />
-                  <img src="/logo-funeraria.png" width="80px" alt="logo cliente funerária central de barueri" />
-                  <img src="/logo-starsoft.svg" alt="logo cliente Starsoft" />
-              </div>
-            </div>
-            <div style={{ marginTop: "5rem" }}>
-              <h3 className="section-title" style={{ textAlign: "center", color: "#B63533", fontSize: "2rem" }}>
-                O que nossos clientes dizem sobrem nós
-              </h3>
-              <div className={styles.depoimento}>
-                <div>
-                  <img src="/logo-funeraria.png" width="100px" alt="logo cliente funerária central de barueri" />
-                </div>
-                <div>
-                  <h1>Funerária Central de Barueri</h1>
-                  <span>"O sistema é bom e não dá problemas, e quando acontece, <br/> a LinqCode sempre se prontifica em resolvê-los."</span><br/>
-                  <span>Sergio</span>
-                </div>
-              </div>
-            </div>
-          </div>
-       </section> */}
     </Layout>
   )
 }

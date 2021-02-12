@@ -26,14 +26,14 @@ export default function Sobre(){
                             </h1>
                             <div>
                                 <h3>
-                                    <b>A LinqCode tem como objetivo em transformar sua empresa</b>
+                                    <b>A LinqCode tem como objetivo transformar sua empresa</b>
                                 </h3>
                             </div>
                             <div>
                                 <p>
                                     Especializada em consultoria de
                                     sistemas e desenvolvimento de softwares que
-                                    busca simplificar e unificar os processos de seus
+                                    buscam simplificar e unificar os processos de seus
                                     clientes através de soluções tecnológicas.
                                 </p>
                             </div>
@@ -62,9 +62,9 @@ export default function Sobre(){
                     <div className="text-center" style={{ color: "#FFF", width: "80%" }}>
                         <h1 style={{ fontSize: "2rem" }}>Pessoas</h1>
                         <p>
-                            Antes de qualquer cnpj lidamos com
-                                pessoas, nosso anseio e poder tornar os
-                                seus sonhos em realidade, ver a satisfação
+                            Antes de qualquer CNPJ lidamos com
+                                pessoas, nosso anseio é poder tornar os
+                                seus sonhos realidade, ver a satisfação
                                 e o sorriso no rosto de nossos clientes.
                         </p>
                     </div>
