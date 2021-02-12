@@ -81,7 +81,7 @@ export default function Solucoes(){
                                 </p>
                                 <p>
                                     <ul>
-                                        <li>Páginas adaptáveis para qualquer tamanho de tela</li>
+                                        <li>Páginas <b className="primary">responsivas</b></li>
                                         <li>Hospedagem inclusa</li>
                                         <li>Conta de e-mail</li>
                                         <li>Suporte</li>
@@ -121,7 +121,7 @@ export default function Solucoes(){
                                 </p>
                                 <p>
                                     <ul>
-                                        <li>Disponível nas principais plataformas <b className="primary">Android</b> e <b className="primary">IOS</b></li>
+                                        <li>Disponível nas plataformas <b className="primary">Android</b> e <b className="primary">IOS</b></li>
                                         <li>Desenvolvemos do zero</li>
                                         <li>Totalmente customizado</li>
                                         <li>Suporte</li>
