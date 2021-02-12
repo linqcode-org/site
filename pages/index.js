@@ -93,7 +93,7 @@ export default function Home() {
            <div className="text-center">
             <h1 className="section-title">Tecnologias</h1>
             <div style={{ width: "50%", margin: "auto" }}>
-              <p>A LinqCode entende que cada projeto tem sua particularidade. Abaixo relacionamos as linguagens e frameworks no qual já trabalhos e possuímos expertise.</p>
+              <p>A Linqcode entende que cada projeto tem sua particularidade. Abaixo relacionamos as linguagens e frameworks no qual já trabalhos e possuímos expertise.</p>
             </div>
            </div>
           <div  style={{ fontSize: "1.5rem", width: "60%", margin: "auto", marginTop: "50px" }}>
@@ -142,7 +142,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h1>Funerária Central de Barueri</h1>
-                    <span>"O sistema é bom e não dá problemas, e quando acontece, <br/> a LinqCode sempre se prontifica em resolvê-los."</span><br/>
+                    <span>"O sistema é bom e não dá problemas, e quando acontece, <br/> a Linqcode sempre se prontifica em resolvê-los."</span><br/>
                     <span>Sergio</span>
                   </div>
                 </div>

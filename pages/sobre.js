@@ -26,7 +26,7 @@ export default function Sobre(){
                             </h1>
                             <div>
                                 <h3>
-                                    <b>A LinqCode tem como objetivo transformar sua empresa</b>
+                                    <b>A Linqcode tem como objetivo transformar sua empresa</b>
                                 </h3>
                             </div>
                             <div>
@@ -112,7 +112,7 @@ export default function Sobre(){
                             <p style={{
                                 fontSize: "1.3rem"
                             }}>
-                            A Linqcode mais que uma empresa, somos pessoas que almejamos impactar pessoas, trazer transformação, ser mais do que entregamos e criar relacionamentos duradouros.<br />
+                            A Linqcode é mais que uma empresa, somos pessoas que almejam impactar pessoas, trazer transformação, ser mais do que entregamos e criar relacionamentos duradouros.<br />
                             Com determinação e paixão no que fazemos, queremos oforecer a melhor experiência que nossos clientes possam ter.<br />
                             </p>
                         </div>
@@ -131,7 +131,7 @@ export default function Sobre(){
                             </p>
                             <h3 style={{color: "#FF6600" }}>Simplicidade</h3>
                             <p>
-                                Um bom trabalho está na simplificadade que ele é.<br />
+                                Um bom trabalho está na sua simplificadade.<br />
                                 Simplicidade não quer dizer menos, mas o essêncial. 
                             </p>
                             <h3 style={{color: "#FF6600" }}>Agilidade</h3>
@@ -148,7 +148,7 @@ export default function Sobre(){
             }}>
                 <div className="container">
                     <div className="displayColumn">
-                        <Card img="/segmentos.svg" title="Segmento" content="Por desenvolvermos soluções personalizadas, atingimos divermos setores." />
+                        <Card img="/segmentos.svg" title="Segmento" content="Por desenvolvermos soluções personalizadas, atingimos os mais diversos segmentos do mercado" />
                         <Card img="/grupo.svg" title="Colaboração" content="Individuos e interações estão a frente de processos, ferramentas e contratos." />
                     </div>
                 </div>
