@@ -1,0 +1,41 @@
+.card {
+    min-width: 150px;
+    max-width: 300px;
+    width: 100%;
+    text-align: center;
+    padding: 0.1rem;
+    background-color: white;
+    box-shadow: #B63533 0px 0px 1px 1px;
+    margin: 0.50rem;
+}
+
+.card hr {
+    width: 2rem;
+    height: 0.25rem;
+    background-color: #B63533;
+}
+
+.cardHeader {
+    padding: 1rem;
+    min-height: 8rem;
+}
+
+.cardHeader img {
+    
+}
+
+.cardTitle {
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+.cardBody {
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    min-height: 10rem;
+}
+
+.footer {
+    padding: 1.5rem;
+    font-size: 1.2rem;
+}

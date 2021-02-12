@@ -1,0 +1,17 @@
+.formulario {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    padding: 15px;
+    background-color: #191C24;
+    color: white;
+}
+
+.formulario [class*="col-"] {
+  width: 100%;
+}
+
+.formulario input, 
+.formulario textarea {
+    max-width: 430px;
+}

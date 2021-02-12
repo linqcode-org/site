@@ -1,0 +1,29 @@
+.card {
+    text-align: center;
+    border-radius: 500rem;
+    background-color: #FFF;
+    width: 20rem;
+    height: 20rem; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+    margin-left: 1rem;
+}
+
+.cardHeader {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    height: 3rem;
+}
+
+.card hr {
+    height: 0.25rem;
+    background-color: #B63533;
+    width: 2rem;
+    margin-bottom: 2rem;
+}
+
+.cardBody{
+    font-size: 1.1rem;
+}

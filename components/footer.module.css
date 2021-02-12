@@ -1,0 +1,83 @@
+.itemMenuFooter{
+    padding-bottom: 1rem;
+}
+
+.redesSociais {
+    max-width: 35px;
+    padding-bottom: 16px;
+}
+
+.titleLinks {
+    color: #FFF;
+}
+
+.menuLinks { 
+    display: flex;
+    justify-content: space-evenly;
+    color: #FFF;
+    width: 50%;
+}
+
+.itemLinks { 
+    display: flex;
+    flex-direction: column;
+    color: #FFF;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.divisor {
+    background-color: #FFF;
+    height: 220px;
+}
+
+.contato { 
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+}
+
+.linksRedeSocial { 
+    display: flex;
+    flex-direction: column;
+    color: #FFF;
+}
+
+/* Telefones em paisagem e abaixo */
+@media (max-width: 768px) { 
+  
+    .footer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menuLinks {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        margin-bottom: 10px;
+    }
+
+    .linksRedeSocial{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-bottom: 10px;
+    }
+
+    .divisor{
+        height: 1px;
+    }
+
+    .contato { 
+        margin-top: 20px;
+    }
+
+    .redesSociais {
+        width: 15px;
+        padding-bottom: 5px;
+    }
+
+}

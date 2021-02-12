@@ -1,0 +1,22 @@
+.servico {
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+}
+
+.servico div {
+    width: 50%;
+}
+
+.servico img {
+    max-width: 100%;
+}
+
+.section {
+    display: flex;
+    min-height: 65vh;
+}
+
+.section div {
+    width: 100%;
+}

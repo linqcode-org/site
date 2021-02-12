@@ -1,0 +1,24 @@
+.cards {
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+  }
+  
+  .cards {
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+  }
+
+
+.sectionCompromisso {
+    min-height: 28vh;
+    max-height: 28vh;
+    margin-top: 8rem;
+    padding: 2rem;
+    margin-top: 0rem;
+}
+
+.sectionCompromisso p {
+    font-size: 1.1rem
+}
