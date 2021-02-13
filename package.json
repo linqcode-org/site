@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "yarn install && next build && next start",
     "dev": "next dev",
-    "build": "next build",
-    "start": "npm install && next build && npm start"
+    "build": "next build"
   },
   "dependencies": {
     "next": "10.0.5",
