@@ -9,10 +9,10 @@ export default function Layout({ children, menuClassName, isDark }) {
     return (
         <>
             <Head>
-                <title>Linqcode Consultoria e Desenvolvimento</title>
+                <title>Linqcode Consultoria e Desenvolvimento de sistemas</title>
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="description" content="Desenvolvimento|App Mobile|Web Sites|E-Commerce|Sob Medida"></meta>
-                <meta property="og:title" content="Linqcode" />
+                <meta property="og:title" content="Linqcode Consultoria e Desenvolvimento de sistemas" />
                 <meta property="og:url" content="https://www.linqcode.com/" />
                 <meta property="og:description" content="Web Sites|Mobile|E-Commerce|Sob Medida"></meta>
                 <meta property="og:image" content="https://site-linqcode.vercel.app/linqcode-logorgb1.png"></meta>
