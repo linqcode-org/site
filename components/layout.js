@@ -15,7 +15,7 @@ export default function Layout({ children, menuClassName, isDark }) {
                 <meta property="og:title" content="Linqcode" />
                 <meta property="og:url" content="https://www.linqcode.com/" />
                 <meta property="og:description" content="Web Sites|Mobile|E-Commerce|Sob Medida"></meta>
-                <meta property="og:image" content="https://site-linqcode.vercel.app/logo-black.png"></meta>
+                <meta property="og:image" content="https://site-linqcode.vercel.app/linqcode-logorgb1.png"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
             </Head>
             <div className={styles.container}>
