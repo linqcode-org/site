@@ -123,7 +123,7 @@ export default function Solucoes(){
                                     <ul>
                                         <li>Disponível nas plataformas <b className="primary">Android</b> e <b className="primary">IOS</b></li>
                                         <li>Desenvolvemos do zero</li>
-                                        <li>Totalmente customizado</li>
+                                        <li>Totalmente customizável</li>
                                         <li>Suporte</li>
                                         <li>Manutenção</li>
                                         <li>Integração com base existentes</li>
@@ -153,7 +153,6 @@ export default function Solucoes(){
                                 <p>
                                     <ul>
                                         <li>Desenvolvemos do zero</li>
-                                        <li>Totalmente customizado</li>
                                         <li>Suporte</li>
                                         <li>Manutentação</li>
                                         <li>Hospedagem</li>

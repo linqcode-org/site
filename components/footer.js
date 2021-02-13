@@ -39,7 +39,7 @@ export default function Footer() {
                                     <a className={styles.itemMenuFooter}>Mobile</a>
                                 </Link>
                                 <Link href="/solucoes/#aplicacao-customizada">
-                                    <a className={styles.itemMenuFooter}>Aplicações customizadas</a>
+                                    <a className={styles.itemMenuFooter}>Aplicações Customizadas</a>
                                 </Link>
                             </div>
                         </div>
