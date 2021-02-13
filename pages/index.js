@@ -152,7 +152,7 @@ export default function Home() {
 
        <section>
          <div className="container">
-          <h1 className="section-title secondary" >Envie seus dados <br /> que entramos em contato com você.</h1>
+          <h1 className="section-title secondary" >Envie seus dados <br /> que entraremos em contato com você.</h1>
           <FormContato className={styles.formulario} />
          </div>
        </section>
