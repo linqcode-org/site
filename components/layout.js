@@ -18,14 +18,7 @@ export default function Layout({ children, menuClassName, isDark }) {
                 <meta property="og:image" content="https://site-linqcode.vercel.app/linqcode-logorgb1.png"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 
-                {/* Global site tag (gtag.js) - Google Analytics */}
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y2LW033JK"></script>
-                <script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments) }
-                    gtag('js', new Date());
-                    gtag('config', 'G-6Y2LW033JK');
-                </script>
+               
 
             </Head>
             <div className={styles.container}>
