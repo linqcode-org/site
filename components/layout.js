@@ -22,12 +22,27 @@ export default function Layout({ children, menuClassName, isDark }) {
                     async
                     src="https://www.googletagmanager.com/gtag/js?id=%G-6Y2LW033JK%" >
                 </script>
+
+                <script 
+                    async 
+                    src="https://www.googletagmanager.com/gtag/js?id=UA-189980657-1">
+                </script>
+
                 <script dangerouslySetInnerHTML={
                     { __html: `
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){window.dataLayer.push(arguments)}
                         gtag("js", new Date());
                         gtag("config", "G-6Y2LW033JK");
+                    `}
+                }></script>
+                
+                <script dangerouslySetInnerHTML={
+                    { __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'UA-189980657-1');
                     `}
                 }></script>
 
