@@ -10,7 +10,8 @@ export default function Layout({ children, menuClassName, isDark }) {
         <>
             <Head>
                 <title>Linqcode Consultoria e Desenvolvimento de sistemas</title>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon.ico"></link>
+                <link rel="shortcut icon" href="favicon_96.ico"></link>
                 <meta name="description" content="Desenvolvimento|App Mobile|Web Sites|E-Commerce|Sob Medida"></meta>
                 <meta property="og:title" content="Linqcode Consultoria e Desenvolvimento de sistemas" />
                 <meta property="og:url" content="https://www.linqcode.com/" />
