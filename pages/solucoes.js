@@ -127,7 +127,7 @@ export default function Solucoes(){
                                         <li>Suporte</li>
                                         <li>Manutenção</li>
                                         <li>Integração com base existentes</li>
-                                        <li>Menssageria Push</li>
+                                        <li>Mensageria Push</li>
                                         <li>Atualização Mensal</li>
                                     </ul>
                                 </p>
