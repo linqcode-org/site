@@ -68,4 +68,4 @@ stages:
               ScriptType: 'Inline Script'
               InlineScript: |
                 yarn
-                yarn build --if-present
+                yarn run build --if-present
