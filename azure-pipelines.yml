@@ -67,5 +67,4 @@ stages:
               StartupCommand: 'yarn start'
               ScriptType: 'Inline Script'
               InlineScript: |
-                yarn
-                yarn run build --if-present
+                yarn start
