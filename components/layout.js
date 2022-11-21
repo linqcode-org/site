@@ -19,6 +19,8 @@ export default function Layout({ children, menuClassName, isDark }) {
                 <meta property="og:image" content="https://site-linqcode.vercel.app/linqcode-logorgb1.png"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 
+                <meta name="facebook-domain-verification" content="m37l9f4zwi8oj4eygl4o0bqmfd4et2" />
+
                 <script
                     async
                     src="https://www.googletagmanager.com/gtag/js?id=%G-6Y2LW033JK%" >
