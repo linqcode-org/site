@@ -48,7 +48,7 @@ export default function Footer() {
                             <div className={styles.itemLinks}>
                                 <Link href="https://www.facebook.com/linqcode">
                                     <a target="_blank" className="text-center">
-                                        <img src="/facebook.svg" className={styles.redesSociais}/>
+                                        <img src="/facebook.svg" className={styles.redesSociais} />
                                     </a>
                                 </Link>
                                 <Link href="https://www.instagram.com/linqcode/">
@@ -58,7 +58,7 @@ export default function Footer() {
                                 </Link>
                                 <Link href="https://www.linkedin.com/company/linqcode">
                                     <a target="_blank" className="text-center">
-                                        <img src="/linkedin.svg" className={styles.redesSociais}/>
+                                        <img src="/linkedin.svg" className={styles.redesSociais} />
                                     </a>
                                 </Link>
                             </div>
@@ -70,11 +70,14 @@ export default function Footer() {
                     <div className={styles.contato}>
                         <div style={{ textAlign: "center" }}><img src="/logo-white.png" width="200px" /></div>
                         <h1 style={{ color: "#FFF" }}>Contate-nos</h1>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: "1rem"  }}><img src="/whatsapp.svg" width="35px" /><span style={{ fontSize: "1.2rem", paddingLeft: "20px" }}>+ 55 11 9 6634-2251</span></div>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center"  }}><img src="/emails.svg" width="35px" /><span style={{ fontSize: "1.2rem", paddingLeft: "20px" }}><Link href="mailto: contato@linqcode.com.br"><a>contato@linqcode.com.br</a></Link></span></div>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: "1rem" }}><img src="/whatsapp.svg" width="35px" /><span style={{ fontSize: "1.2rem", paddingLeft: "20px" }}>+ 55 11 9 6634-2251</span></div>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}><img src="/emails.svg" width="35px" /><span style={{ fontSize: "1.2rem", paddingLeft: "20px" }}><Link href="mailto: contato@linqcode.com.br"><a>contato@linqcode.com.br</a></Link></span></div>
                     </div>
                 </div>
             </div>
         </section>
+        <div>
+            <h4 style={{ textAlign: "center", color: "#FFF" }}>LINQCODE CONSULTORIA LTDA <br /> <p style={{ marginTop: 5 }}>38.350.776/0001-04</p></h4>
+        </div>
     </footer>
 }
