@@ -107,6 +107,7 @@
   max-width: 600px;
   margin: 0 auto 3rem;
   line-height: 1.7;
+  text-align: center;
 }
 
 .sectionSubtitleLight {
@@ -380,7 +381,7 @@
     min-height: 85vh;
   }
 
-  .menuOpacityOff, .menuOpacityOn {
+  .menuOpacityOn {
     position: fixed;
     top: 0;
     width: 100%;
@@ -388,8 +389,19 @@
     background-color: #101116;
   }
 
+  .menuOpacityOff {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+  }
+
   .cards {
     grid-template-columns: 1fr;
+    justify-items: center;
   }
 
   .cardsCircle {

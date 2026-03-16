@@ -88,6 +88,16 @@ section {
   border-radius: 2px;
 }
 
+@media screen and (max-width: 610px) {
+  .section-title {
+    text-align: center;
+  }
+
+  .section-title hr {
+    margin: 0.75rem auto;
+  }
+}
+
 /* ===== CONTAINER ===== */
 .container {
   max-width: 1200px;

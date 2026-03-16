@@ -2,12 +2,15 @@
 .hero {
   margin-top: 5rem;
   padding: 5rem 0;
+  height: 380px;
+  display: flex;
+  align-items: center;
   color: #FFF;
-  background-image: url('/linqcode-logorgb4.png');
+  background-image: url('/logo-preta.png');
   background-repeat: no-repeat;
-  background-size: auto 70%;
-  background-position: 90% center;
-  background-blend-mode: soft-light;
+  background-size: 280px 280px;
+  background-position: right 10% center;
+  background-blend-mode: luminosity;
   position: relative;
   overflow: hidden;
 }
@@ -20,6 +23,11 @@
   right: 0;
   height: 3px;
   background: linear-gradient(90deg, #FF6000, #FF8C40, transparent);
+}
+
+.heroContent {
+  max-width: 600px;
+  animation: fadeInUp 0.6s ease-out;
 }
 
 /* Grid form + info */
@@ -96,6 +104,18 @@
   }
 
   .hero {
-    background-size: auto 30%;
+    height: 300px;
+    background-size: 140px 140px;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

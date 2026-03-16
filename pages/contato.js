@@ -8,10 +8,12 @@ export default function Contato(){
         {/* Hero */}
         <section className={`bg-secondary ${styles.hero}`}>
           <div className="container">
-            <h1 className="section-title" style={{ color: "#FFF" }}>
-              Tudo certo! <br />
-              vamos começar.
-            </h1>
+            <div className={styles.heroContent}>
+              <h1 className="section-title" style={{ color: "#FFF" }}>
+                Tudo certo! <br />
+                vamos começar.
+              </h1>
+            </div>
           </div>
         </section>
 

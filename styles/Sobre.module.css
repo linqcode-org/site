@@ -2,12 +2,15 @@
 .hero {
   background-image: url('/linqcode-logorgb1.png');
   background-repeat: no-repeat;
-  background-size: auto 70%;
-  background-position: 90% center;
+  background-size: 280px 280px;
+  background-position: right 10% center;
   background-blend-mode: luminosity;
   margin-top: 5rem;
-  color: #FFF;
   padding: 5rem 0;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  color: #FFF;
   position: relative;
   overflow: hidden;
 }
@@ -137,8 +140,8 @@
 /* Responsivo */
 @media screen and (max-width: 768px) {
   .hero {
-    background-size: auto 40%;
-    background-position: 95% bottom;
+    height: 300px;
+    background-size: 140px 140px;
   }
 
   .compromissoCard {

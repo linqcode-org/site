@@ -2,11 +2,14 @@
 .hero {
   margin-top: 5rem;
   padding: 5rem 0;
+  height: 380px;
+  display: flex;
+  align-items: center;
   color: #FFF;
   background-image: url('/linqcode-logorgb1.png');
   background-repeat: no-repeat;
-  background-size: auto 60%;
-  background-position: 90% center;
+  background-size: 280px 280px;
+  background-position: right 10% center;
   background-blend-mode: luminosity;
   position: relative;
   overflow: hidden;
@@ -144,7 +147,8 @@
   }
 
   .hero {
-    background-size: auto 30%;
+    height: 300px;
+    background-size: 140px 140px;
   }
 }
 
