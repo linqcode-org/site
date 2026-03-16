@@ -9,7 +9,7 @@ trigger:
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '11570287-2328-4086-9572-a7d7539f407f'
+  azureSubscription: '655531b2-f260-4f5b-8de9-44b6840454c0'
 
   # Web app name
   webAppName: 'linqcode'
