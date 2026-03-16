@@ -39,10 +39,15 @@ stages:
     - script: npm run build
       displayName: 'Build Next.js'
 
+    - script: |
+        cp -r public .next/standalone/public
+        cp -r .next/static .next/standalone/.next/static
+      displayName: 'Copy static assets to standalone'
+
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/.next/standalone'
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
@@ -73,4 +78,4 @@ stages:
               WebAppName: $(webAppName)
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               RuntimeStack: 'NODE|22-lts'
-              StartupCommand: 'npm start'
+              StartupCommand: 'node server.js'
