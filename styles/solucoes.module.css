@@ -1,22 +1,139 @@
-.servico {
-    display: flex;
-    align-items: center;
-    min-height: 100%;
+/* Hero */
+.hero {
+  background-image: url('/linqcode-logorgb1.png');
+  background-repeat: no-repeat;
+  background-size: auto 70%;
+  background-position: 90% center;
+  background-blend-mode: normal;
+  margin-top: 5rem;
+  color: #FFF;
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.servico div {
-    width: 50%;
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FF6000, #FF8C40, transparent);
 }
 
-.servico img {
-    max-width: 100%;
+.heroContent {
+  max-width: 600px;
+  animation: fadeInUp 0.6s ease-out;
 }
 
+.heroContent p {
+  line-height: 1.7;
+  opacity: 0.85;
+  font-size: 1.05rem;
+}
+
+/* Seções de serviço */
 .section {
-    display: flex;
-    min-height: 65vh;
+  display: flex;
+  align-items: center;
+  padding: 5rem 0;
+  background-color: #f9f9f9;
 }
 
-.section div {
-    width: 100%;
+.sectionAlt {
+  background-color: #fff;
+}
+
+.servico {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.servicoImg {
+  flex: 1;
+  text-align: center;
+}
+
+.servicoImg img {
+  max-width: 100%;
+  width: 300px;
+  transition: transform 0.4s ease;
+}
+
+.servicoImg img:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.servicoContent {
+  flex: 1;
+}
+
+.servicoContent h2 {
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.servicoContent ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.servicoContent ul li {
+  padding: 0.65rem 0;
+  padding-left: 1.8rem;
+  position: relative;
+  line-height: 1.6;
+  transition: padding-left 0.3s ease;
+}
+
+.servicoContent ul li:hover {
+  padding-left: 2.2rem;
+}
+
+.servicoContent ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FF6000;
+}
+
+/* Responsivo */
+@media screen and (max-width: 768px) {
+  .hero {
+    background-size: auto 30%;
+    background-position: 95% bottom;
+  }
+
+  .servico {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .servicoContent ul {
+    text-align: left;
+  }
+
+  .servicoImg img {
+    width: 200px;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

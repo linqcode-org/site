@@ -3,81 +3,68 @@ import styles from './footer.module.css';
 
 export default function Footer() {
     return <footer>
-        <section style={{
-            minHeight: "20vh"
-        }}>
+        <section style={{ minHeight: "auto", padding: "4rem 0 2rem" }}>
             <div className="container">
                 <div className={styles.footer}>
-                    <div className={styles.menuLinks}>
-                        <div>
-                            <h3 className={styles.titleLinks}>Nos conheça</h3>
-                            <div className={styles.itemLinks}>
-                                <Link href="/">
-                                    <a className={styles.itemMenuFooter}>Home</a>
-                                </Link>
-                                <Link href="/sobre">
-                                    <a className={styles.itemMenuFooter}>Quem somos</a>
-                                </Link>
-                                <Link href="/solucoes">
-                                    <a className={styles.itemMenuFooter}>Soluções</a>
-                                </Link>
-                                <Link href="/contato">
-                                    <a className={styles.itemMenuFooter}>Contato</a>
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 className={styles.titleLinks}>O que oferemos</h3>
-                            <div className={styles.itemLinks}>
-                                <Link href="/solucoes/#site-institucional">
-                                    <a className={styles.itemMenuFooter}>Web Sites</a>
-                                </Link>
-                                <Link href="/solucoes/#ecommerce">
-                                    <a className={styles.itemMenuFooter}>E-Commerce</a>
-                                </Link>
-                                <Link href="/solucoes/#mobile">
-                                    <a className={styles.itemMenuFooter}>Mobile</a>
-                                </Link>
-                                <Link href="/solucoes/#aplicacao-customizada">
-                                    <a className={styles.itemMenuFooter}>Aplicações Customizadas</a>
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 className={styles.titleLinks}>Siga-nos</h3>
-                            <div className={styles.itemLinks}>
-                                <Link href="https://www.facebook.com/linqcode">
-                                    <a target="_blank" className="text-center">
-                                        <img src="/facebook.svg" className={styles.redesSociais} />
-                                    </a>
-                                </Link>
-                                <Link href="https://www.instagram.com/linqcode/">
-                                    <a target="_blank" className="text-center">
-                                        <img src="/instagram.svg" className={styles.redesSociais} />
-                                    </a>
-                                </Link>
-                                <Link href="https://www.linkedin.com/company/linqcode">
-                                    <a target="_blank" className="text-center">
-                                        <img src="/linkedin.svg" className={styles.redesSociais} />
-                                    </a>
-                                </Link>
-                            </div>
+                    <div className={styles.brandBlock}>
+                        <img src="/logo-white.png" alt="Linqcode" className={styles.logo} />
+                        <p className={styles.brandDesc}>
+                            Consultoria e desenvolvimento de sistemas para empresas que precisam unificar processos e evoluir com tecnologia.
+                        </p>
+                        <div className={styles.socials}>
+                            <a href="https://www.facebook.com/linqcode" target="_blank" rel="noreferrer">
+                                <img src="/facebook.svg" alt="Facebook" />
+                            </a>
+                            <a href="https://www.instagram.com/linqcode/" target="_blank" rel="noreferrer">
+                                <img src="/instagram.svg" alt="Instagram" />
+                            </a>
+                            <a href="https://www.linkedin.com/company/linqcode" target="_blank" rel="noreferrer">
+                                <img src="/linkedin.svg" alt="LinkedIn" />
+                            </a>
                         </div>
                     </div>
-                    <div>
-                        <hr className={styles.divisor} />
+
+                    <div className={styles.linksColumn}>
+                        <h3 className={styles.titleLinks}>Nos conheça</h3>
+                        <div className={styles.itemLinks}>
+                            <Link href="/" className={styles.itemMenuFooter}>Home</Link>
+                            <Link href="/sobre" className={styles.itemMenuFooter}>Quem somos</Link>
+                            <Link href="/solucoes" className={styles.itemMenuFooter}>Soluções</Link>
+                            <Link href="/clientes" className={styles.itemMenuFooter}>Clientes</Link>
+                            <Link href="/contato" className={styles.itemMenuFooter}>Contato</Link>
+                        </div>
                     </div>
-                    <div className={styles.contato}>
-                        <div style={{ textAlign: "center" }}><img src="/logo-white.png" width="200px" /></div>
-                        <h1 style={{ color: "#FFF" }}>Contate-nos</h1>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: "1rem" }}><img src="/whatsapp.svg" width="35px" /><span style={{ fontSize: "1.2rem", paddingLeft: "20px" }}>+ 55 11 9 6634-2251</span></div>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}><img src="/emails.svg" width="35px" /><span style={{ fontSize: "1.2rem", paddingLeft: "20px" }}><Link href="mailto: contato@linqcode.com.br"><a>contato@linqcode.com.br</a></Link></span></div>
+
+                    <div className={styles.linksColumn}>
+                        <h3 className={styles.titleLinks}>O que oferecemos</h3>
+                        <div className={styles.itemLinks}>
+                            <Link href="/solucoes/#site-institucional" className={styles.itemMenuFooter}>Web Sites</Link>
+                            <Link href="/solucoes/#ecommerce" className={styles.itemMenuFooter}>E-Commerce</Link>
+                            <Link href="/solucoes/#mobile" className={styles.itemMenuFooter}>Mobile</Link>
+                            <Link href="/solucoes/#aplicacao-customizada" className={styles.itemMenuFooter}>Aplicações Customizadas</Link>
+                        </div>
                     </div>
+
+                    <div className={styles.linksColumn}>
+                        <h3 className={styles.titleLinks}>Contate-nos</h3>
+                        <div className={styles.contactList}>
+                            <a href="https://api.whatsapp.com/send/?phone=5511966342251&text=Ol%C3%A1%2C+quero+fazer+um+or%C3%A7amento%21+%0A&app_absent=0" target="_blank" rel="noreferrer" className={styles.contactItem}>
+                                <img src="/whatsapp.svg" alt="" />
+                                <span>+55 11 9 6634-2251</span>
+                            </a>
+                            <a href="mailto:contato@linqcode.com.br" className={styles.contactItem}>
+                                <img src="/emails.svg" alt="" />
+                                <span>contato@linqcode.com.br</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={styles.bottomBar}>
+                    <span>LINQCODE CONSULTORIA LTDA</span>
+                    <span>38.350.776/0001-04</span>
                 </div>
             </div>
         </section>
-        <div>
-            <h4 style={{ textAlign: "center", color: "#FFF" }}>LINQCODE CONSULTORIA LTDA <br /> <p style={{ marginTop: 5 }}>38.350.776/0001-04</p></h4>
-        </div>
     </footer>
 }

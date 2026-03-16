@@ -1,0 +1,170 @@
+/* Hero */
+.hero {
+  margin-top: 5rem;
+  padding: 5rem 0;
+  color: #FFF;
+  background-image: url('/linqcode-logorgb1.png');
+  background-repeat: no-repeat;
+  background-size: auto 60%;
+  background-position: 90% center;
+  background-blend-mode: luminosity;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FF6000, #FF8C40, transparent);
+}
+
+.heroContent {
+  max-width: 600px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.heroContent p {
+  line-height: 1.7;
+  opacity: 0.85;
+  font-size: 1.05rem;
+}
+
+/* Grid de clientes */
+.clientesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.clienteCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 2rem;
+  background: #FFF;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  min-height: 180px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.clienteCard::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #FF6000;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.clienteCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255, 96, 0, 0.1);
+}
+
+.clienteCard:hover::before {
+  transform: scaleX(1);
+}
+
+.clienteLogo {
+  max-width: 140px;
+  max-height: 70px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.clienteCard:hover .clienteLogo {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+.clienteNome {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #444;
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* CTA */
+.ctaSection {
+  text-align: center;
+  padding: 5rem 0;
+  background: linear-gradient(180deg, #f9f9f9 0%, #FFF 100%);
+}
+
+.ctaSection h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #191C24;
+  margin-bottom: 0.5rem;
+}
+
+.ctaButton {
+  display: inline-block;
+  background: #FF6000;
+  color: #FFF;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(255, 96, 0, 0.2);
+}
+
+.ctaButton:hover {
+  background: #e55500;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 96, 0, 0.35);
+}
+
+/* Responsivo */
+@media screen and (max-width: 768px) {
+  .clientesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .hero {
+    background-size: auto 30%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .clientesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaSection h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

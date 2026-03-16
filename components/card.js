@@ -3,8 +3,7 @@ import styles from './card.module.css'
 
 export default function Card({id, img, title, content, className, footer, link}){
     return <div className={`${styles.card} ${className || ''}`}>
-        <Link href={link || `#${id}`}>
-            <a>
+        <Link href={link || `#${id}`} className={styles.cardLink}>
                 <div className={styles.cardHeader}>
                     <img  src={img} />
                 </div>
@@ -18,7 +17,6 @@ export default function Card({id, img, title, content, className, footer, link})
                 <div className={styles.footer}>
                     {footer}
                 </div>
-            </a>
         </Link>
     </div>
 }

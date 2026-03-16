@@ -12,18 +12,23 @@ export default function Layout({ children, menuClassName, isDark }) {
                 <title>Linqcode Consultoria e Desenvolvimento de sistemas</title>
                 <link rel="icon" href="/favicon.ico"></link>
                 <link rel="shortcut icon" href="favicon_96.ico"></link>
-                <meta name="description" content="Desenvolvimento|App Mobile|Web Sites|E-Commerce|Sob Medida"></meta>
+                <meta name="description" content="Consultoria e desenvolvimento de sistemas, apps mobile, web sites, e-commerce e soluções sob medida."></meta>
                 <meta property="og:title" content="Linqcode Consultoria e Desenvolvimento de sistemas" />
                 <meta property="og:url" content="https://www.linqcode.com/" />
                 <meta property="og:description" content="Web Sites|Mobile|E-Commerce|Sob Medida"></meta>
                 <meta property="og:image" content="https://site-linqcode.vercel.app/linqcode-logorgb1.png"></meta>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+                <meta name="theme-color" content="#191C24" />
 
                 <meta name="facebook-domain-verification" content="m37l9f4zwi8oj4eygl4o0bqmfd4et2" />
 
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
                 <script
                     async
-                    src="https://www.googletagmanager.com/gtag/js?id=%G-6Y2LW033JK%" >
+                    src="https://www.googletagmanager.com/gtag/js?id=G-6Y2LW033JK" >
                 </script>
 
                 <script 
@@ -53,7 +58,7 @@ export default function Layout({ children, menuClassName, isDark }) {
             <div className={styles.container}>
                 <header>
                     <div>
-                        <Menu className = {menuClassName} isDark = {isDark} />
+                        <Menu className={menuClassName} isDark={isDark} />
                     </div>
                 </header>
                 <main>
@@ -61,11 +66,15 @@ export default function Layout({ children, menuClassName, isDark }) {
                 </main>
                 <Footer />
             </div>
-            <Link href="https://api.whatsapp.com/send/?phone=5511966342251&text=Ol%C3%A1%2C+quero+fazer+um+or%C3%A7amento%21+%0A&app_absent=0">
-                <a target="_blank" className={styles.iconeWhatsApp}>
-                    <img src="/whatsapp.svg" style={{ width: "6rem" }} />
-                </a>
-            </Link>
+            <a 
+                href="https://api.whatsapp.com/send/?phone=5511966342251&text=Ol%C3%A1%2C+quero+fazer+um+or%C3%A7amento%21+%0A&app_absent=0"
+                target="_blank"
+                rel="noreferrer"
+                className={styles.iconeWhatsApp}
+                aria-label="Falar com a Linqcode no WhatsApp"
+            >
+                <img src="/whatsapp.svg" alt="WhatsApp" />
+            </a>
         </>
     )
 }

@@ -2,18 +2,33 @@
   background-color: inherit;
 }
 
+/* ===== HERO ===== */
 .section {
   background-image: url('/linqcode-banner.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.banner{
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(25, 28, 36, 0.95) 0%,
+    rgba(25, 28, 36, 0.8) 50%,
+    rgba(25, 28, 36, 0.7) 100%
+  );
+}
+
+.banner {
   min-height: 100vh;
   display: flex; 
   align-items: center;
   position: relative;
+  z-index: 1;
 }
 
 .title {
@@ -21,210 +36,395 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  max-width: 750px;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .title h1 {
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 5.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 1.2rem 0;
+  letter-spacing: -0.02em;
 }
 
-
-.saibaMais > a {
-  background-color: #FF6000;
-  padding: 0.5rem;
-  border-radius: 0.8rem;
-  font-size: 1rem;
+.heroSubtitle {
+  font-size: 1.15rem;
+  opacity: 0.85;
+  line-height: 1.7;
+  margin: 0 0 2.5rem 0;
+  max-width: 550px;
 }
 
-.containerButton {
+.heroActions {
   display: flex;
-  align-items: center;
-  justify-content: right;
-  /* width: 10%; */
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.containerButton a {
-  background-color: #FF6000;
-  height: 6rem;
-  width: 6rem;
-  border-radius: 6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: #B63533 0px 0px 5rem 0.5rem;
+.btnPrimary {
+  display: inline-block;
+  background: #FF6000;
+  color: #FFF;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(255, 96, 0, 0.2);
 }
 
-.containerButton > a > div {
-  border: 0;
+.btnPrimary:hover {
+  background: #e55500;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 96, 0, 0.35);
+}
+
+.btnSecondary {
+  display: inline-block;
+  color: #FFF;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.25s ease;
   background: transparent;
-  box-sizing: border-box;
-  width: 0;
-  border-color: transparent transparent transparent #FFF;
-  transition: 100ms all ease;
+}
+
+.btnSecondary:hover {
+  border-color: #FF6000;
+  color: #FF6000;
+  transform: translateY(-2px);
+}
+
+/* ===== O QUE FAZEMOS ===== */
+.sectionSubtitle {
+  font-size: 1.05rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+.sectionSubtitleLight {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.buttonSaibaMais { 
+  padding: 10px 24px;
+  border: none;
+  background: #FF6000;
+  color: #FFF;
+  border-radius: 8px;
   cursor: pointer;
-  border-style: solid;
-  border-width: 0.6rem 0 0.6rem 1rem;
-  margin-left: 0.5rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(255, 96, 0, 0.2);
+}
+
+.buttonSaibaMais:hover {
+  background: #e55500;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 96, 0, 0.35);
+}
+
+/* ===== COMO FAZEMOS ===== */
+.sectionComoFazemos {
+  background: #FF6000;
+  min-height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.sectionComoFazemos::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.sectionComoFazemos::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .cardsCircle {
   display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
   position: relative;
-  justify-content: space-evenly;
+  z-index: 1;
 }
 
-.depoimento{
+/* ===== TECNOLOGIAS ===== */
+.sectionTech {
+  padding: 5rem 0;
+  min-height: auto;
+  background: #f8f8f8;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 3rem auto 0;
+}
+
+.techCard {
+  background: #FFF;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.techCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.techIcon {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.techLabel {
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: #191C24;
+  margin-bottom: 0.5rem;
+}
+
+.techDesc {
+  color: #666;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* ===== CLIENTES HOME ===== */
+.sectionClientes {
+  padding: 5rem 0;
+  min-height: auto;
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+
+.clientesStrip {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 2rem 0;
+}
+
+.clienteItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 0 0 auto;
+}
+
+.clienteNome {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.clienteItem:hover .clienteNome {
+  color: #191C24;
+}
+
+.clienteLogoHome {
+  width: 120px;
+  height: 50px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.clienteLogoHome:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* ===== DEPOIMENTO ===== */
+.testimonialGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.testimonialTitle {
+  text-align: left;
+}
+
+.testimonialContent {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 2.5rem;
+  border-left: 4px solid #FF6000;
+}
+
+.depoimento {
   color: #FFF;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 1rem;
-  
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 
-.depoimento div{
-  padding-left: 0.75rem;
+/* ===== CONTATO HOME ===== */
+.sectionContato {
+  background: #191C24;
+  min-height: auto;
+  padding: 5rem 0;
+  position: relative;
 }
 
-.clientesAtendidos { 
+.contatoGrid {
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+.contatoForm {
+  width: 100%;
+}
+
+.formulario {
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  padding-top: 4rem;
+  flex-direction: column;
 }
 
-.clientesAtendidos img {
-  max-width: 220px;
-  /* filter: brightness(1);  */
-  filter: contrast(110%); 
-  /* filter: grayscale(80%);   */
-  /* filter: invert(75%);  */
-  /* filter: opacity(25%);  */
-  /* filter: saturate(30%);  */
-  /* filter: sepia(60%);  */
-}
-
-.buttonSaibaMais { 
-
-  padding: 10px;
-  border: none;
-  background-color: #FF6000;
-  color: #FFF;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
+/* ===== MENU SCROLL ===== */
 .menuOpacityOn { 
   position: absolute;
   background-color: inherit;
 }
 
 .menuOpacityOff { 
-  background-color: black;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
 }
 
-@media screen and (max-width: 610px){
-
-  .banner {
-    min-height: 250px;
+/* ===== RESPONSIVO ===== */
+@media screen and (max-width: 960px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .menuOpacityOff, .menuOpacityOn {
-    position: absolute;
-    background-color: #101116;
-    height: 8rem;
+  .techGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .menuOpacityOff, .menuOpacityOn {
-    position: absolute;
-    background-color: #101116;
+  .testimonialGrid {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
 
-  .menuOpacityOff nav, .menuOpacityOn nav {
-    height: 8rem;
+  .testimonialContent {
+    border-left: none;
+    border-top: 4px solid #FF6000;
   }
 
-  .menuOpacityOff nav img, .menuOpacityOn nav img {
-    width: 10rem;
-  }
-
-  .containerButton {
-    display: none;
-  }
-
-  .title{
+  .clientesStrip {
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .banner {
+    min-height: 85vh;
   }
 
-  .saibaMais{
-    margin-top: 30px;
+  .menuOpacityOff, .menuOpacityOn {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #101116;
   }
 
   .cards {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
   .cardsCircle {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
 
-  .cardsCircle div {
-    margin: 10px auto;
-  }
-
-}
-
-@media screen and (max-width: 694px){
-
-  .cards {
-    display: flex;
+  .heroActions {
     flex-direction: column;
   }
 
-  .cards div {
-    min-width: 100%;
+  .btnPrimary,
+  .btnSecondary {
+    text-align: center;
   }
 
-  .cardsCircle {
-    display: flex;
+  .depoimento {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    text-align: center;
   }
 
-  .cardsCircle div {
-    margin-bottom: 10px;
+  .techGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
+  .clienteLogoHome {
+    width: 90px;
+    height: 40px;
+  }
 }
 
-@media screen and (min-width: 695px) and (max-width: 720px){
-
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    flex-direction: column;
-  }
-
-}
-
-@media screen and (max-width: 768px){
-
+@media screen and (max-width: 768px) {
   .menuOpacityOff nav, .menuOpacityOn nav {
-    height: 8rem;
+    height: 5rem;
   }
-
-}
-
-/* Telefones em paisagem a tablet em retrato */
-@media (max-width: 781px) {
-  
-  .banner {
-    min-height: 350px;
-  }
-
 }

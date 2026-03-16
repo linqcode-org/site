@@ -1,17 +1,101 @@
+/* Hero */
+.hero {
+  margin-top: 5rem;
+  padding: 5rem 0;
+  color: #FFF;
+  background-image: url('/linqcode-logorgb4.png');
+  background-repeat: no-repeat;
+  background-size: auto 70%;
+  background-position: 90% center;
+  background-blend-mode: soft-light;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FF6000, #FF8C40, transparent);
+}
+
+/* Grid form + info */
+.contatoGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.formCol {
+  width: 100%;
+}
+
 .formulario {
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    padding: 15px;
-    background-color: #191C24;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+  background: #191C24;
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
 .formulario [class*="col-"] {
   width: 100%;
 }
 
-.formulario input, 
+.formulario input,
 .formulario textarea {
-    max-width: 430px;
+  max-width: 100%;
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding-top: 2rem;
+}
+
+.infoCol h2 {
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.05rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: padding-left 0.3s ease;
+}
+
+.infoItem:hover {
+  padding-left: 0.5rem;
+}
+
+.infoItem a {
+  color: #191C24;
+  transition: color 0.2s ease;
+  font-weight: 600;
+}
+
+.infoItem a:hover {
+  color: #FF6000;
+}
+
+/* Responsivo */
+@media screen and (max-width: 768px) {
+  .contatoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    background-size: auto 30%;
+  }
 }

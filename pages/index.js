@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Card from '../components/card'
@@ -11,50 +12,52 @@ export default function Home() {
   const [styleMenu, setStyleMenu] = useState(styles.menuOpacityOn);
 
   useEffect(() => {
-    window.addEventListener('scroll', (event) => handleScrol(event));
+    const handleScroll = () => {
+      const nTop = window.scrollY;
+      setStyleMenu(nTop > 100 ? styles.menuOpacityOff : styles.menuOpacityOn);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [])
-
-  const handleScrol = (event) => {
-
-    event.preventDefault();
-    let nTop = event.srcElement.scrollingElement.scrollTop;
-
-    if (nTop > 100){
-      setStyleMenu(styles.menuOpacityOff)
-    }else{
-      setStyleMenu(styles.menuOpacityOn)
-    }
-  }
 
   return (
       <Layout isDark={true} menuClassName={styleMenu}>  
         <div className={styles.section}>
+          <div className={styles.heroOverlay}></div>
           <div className="container">
             <div className={styles.banner}>
               <div className={styles.title}>
                 <h1>
-                  Soluções tecnológicas <br/>
-                  para unificar os processos <br/>
+                  Soluções tecnológicas<br/>
+                  para unificar os processos<br/>
                   da sua empresa
                 </h1>
-                <div className={styles.saibaMais}>
-                  <Link href="/contato"> 
-                    <a>
-                      ENTRE EM CONTATO
-                    </a>
-                  </Link> 
+                <p className={styles.heroSubtitle}>
+                  Consultoria e desenvolvimento de sistemas sob medida para transformar seu negócio.
+                </p>
+                <div className={styles.heroActions}>
+                  <Link href="/contato" className={styles.btnPrimary}>
+                    ENTRE EM CONTATO
+                  </Link>
+                  <Link href="/solucoes" className={styles.btnSecondary}>
+                    CONHEÇA NOSSAS SOLUÇÕES
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
        <section id="o-que-fazemos" name="o-que-fazemos"> 
          <div className="container">
             <h1 className="section-title">
               O que fazemos
               <hr/>
             </h1>
-            <div className={`${styles.cards} displayColumn`}>
+            <p className={styles.sectionSubtitle}>
+              Desenvolvemos soluções digitais que simplificam processos e geram resultados reais para o seu negócio.
+            </p>
+            <div className={styles.cards}>
               <Card id="site-institucional" img="/web-responsive.svg" title="Web Sites" content="Crie agora mesmo o cartão de visita da sua empresa. Tenha seu próprio site." footer={<button className={styles.buttonSaibaMais}>Saiba mais</button>} link="/solucoes/#site-institucional" />
               <Card id="ecommerce" img="/img-ecommerce.svg" title="E-Commerce" content="Tenha sua loja na internet. Customize conforme seu negócio." footer={<button className={styles.buttonSaibaMais}>Saiba mais</button>} link="/solucoes/#ecommerce" />
               <Card id="mobile" img="/img-mobile.svg" title="Mobile" content="Desenvolvimento de Aplicativos. Integre a mobilidade ao seu negócio." footer={<button className={styles.buttonSaibaMais}>Saiba mais</button>} link="/solucoes/#mobile" />
@@ -63,16 +66,16 @@ export default function Home() {
          </div>
        </section>
 
-       <section style={{ backgroundColor: "#FF6000" }}>
+       <section className={styles.sectionComoFazemos}>
          <div className="container">
            <h1 className="section-title" style={{ color: "#FFF" }}>
              Como fazemos
-             <hr style={{ backgroundColor: "#FFF" }} />
+             <hr style={{ background: "#FFF" }} />
            </h1>
-           <p style={{ textAlign: "center", marginBottom: "3rem", color: "#FFF", fontSize: "1.4rem" }}>
-             Nosso time está focado em gerar transformação. <br/>
-             Sempre pensando em um relacionamento de confiança e parceria. <br />
-             Com amor e dedicação no que fazemos, buscamos tornar sonhos em realidade. <br />
+           <p className={styles.sectionSubtitleLight}>
+             Nosso time está focado em gerar transformação.<br/>
+             Sempre pensando em um relacionamento de confiança e parceria.<br/>
+             Com amor e dedicação no que fazemos, buscamos tornar sonhos em realidade.<br/>
              A satisfação de nossos clientes é o que nos move. 
            </p> 
            <div className={`${styles.cardsCircle}`}>
@@ -82,78 +85,130 @@ export default function Home() {
            </div>
          </div>
        </section>
-       
-       
 
-       <section style={{
-         padding: "5rem 0 5rem 0",
-         minHeight: "1vh"
-       }}>
+       <section className={styles.sectionTech}>
          <div className="container">
            <div className="text-center">
             <h1 className="section-title">Tecnologias</h1>
-            <div style={{ width: "50%", margin: "auto" }}>
-              <p>A Linqcode entende que cada projeto tem sua particularidade. Abaixo relacionamos as linguagens e frameworks no qual já trabalhos e possuímos expertise.</p>
-            </div>
+            <p className={styles.sectionSubtitle}>
+              Utilizamos as melhores tecnologias do mercado para entregar soluções robustas, escaláveis e modernas.
+            </p>
            </div>
-          <div  style={{ fontSize: "1.5rem", width: "60%", margin: "auto", marginTop: "50px" }}>
-            <div className="row">
-              <div className="col-3"><b>BACKEND</b></div>
-              <div className="col-9" style={{ fontWeight: "100" }}>ASP.NET CORE - JAVA - NODE.JS</div>
+          <div className={styles.techGrid}>
+            <div className={styles.techCard}>
+              <div className={styles.techIcon}><Image src="/tech-backend.svg" alt="Backend" width={80} height={80} /></div>
+              <div className={styles.techLabel}>BACKEND</div>
+              <div className={styles.techDesc}>APIs robustas e microsserviços escaláveis</div>
             </div>
-            <div className="row">
-              <div className="col-3"><b>FRONTEND</b></div>
-              <div className="col-9" style={{ fontWeight: "100" }}>REACT.JS - NEXT.JS - ASP.NET WEB</div>
+            <div className={styles.techCard}>
+              <div className={styles.techIcon}><Image src="/tech-frontend.svg" alt="Frontend" width={80} height={80} /></div>
+              <div className={styles.techLabel}>FRONTEND</div>
+              <div className={styles.techDesc}>Interfaces modernas e responsivas</div>
             </div>
-            <div className="row">
-              <div className="col-3"><b>MOBILE</b></div>
-              <div className="col-9" style={{ fontWeight: "100" }}>REACT NATIVE - ANDROID JAVA</div>
+            <div className={styles.techCard}>
+              <div className={styles.techIcon}><Image src="/tech-mobile.svg" alt="Mobile" width={80} height={80} /></div>
+              <div className={styles.techLabel}>MOBILE</div>
+              <div className={styles.techDesc}>Apps nativos e multiplataforma</div>
             </div>
-            <div className="row">
-              <div className="col-3"><b>DATABASE</b></div>
-              <div className="col-9" style={{ fontWeight: "100" }}>MYSQL - SQL SERVER - ORACLE</div>
+            <div className={styles.techCard}>
+              <div className={styles.techIcon}><Image src="/tech-database.svg" alt="Banco de Dados" width={80} height={80} /></div>
+              <div className={styles.techLabel}>BANCO DE DADOS</div>
+              <div className={styles.techDesc}>Modelagem e alta disponibilidade</div>
             </div>
-            <div className="row">
-              <div className="col-3"><b>CLOUD</b></div>
-              <div className="col-9" style={{ fontWeight: "100" }}>MICROSOFT AZURE - AMAZON AWS</div>
+            <div className={styles.techCard}>
+              <div className={styles.techIcon}><Image src="/tech-cloud.svg" alt="Cloud" width={80} height={80} /></div>
+              <div className={styles.techLabel}>CLOUD</div>
+              <div className={styles.techDesc}>Infraestrutura em nuvem segura</div>
             </div>
-            <div className="row">
-              <div className="col-3"><b>QA</b></div>
-              <div className="col-9" style={{ fontWeight: "100" }}>DOTNET - PYTHON</div>
+            <div className={styles.techCard}>
+              <div className={styles.techIcon}><Image src="/tech-qa.svg" alt="Qualidade" width={80} height={80} /></div>
+              <div className={styles.techLabel}>QUALIDADE</div>
+              <div className={styles.techDesc}>Testes automatizados e CI/CD</div>
             </div>
           </div>
          </div>
        </section>
 
-       <section className="bg-secondary" style={{
-         minHeight: "1vh",
-         padding: "0"
-       }}>
-         <div className="container row">
-           <div className="col-6">
-              <h1 className="section-title" style={{ textAlign: "center", color: "#FFF" }}>
-                O que nossos clientes dizem sobre nós
-              </h1>
-           </div>
-           <div className="col-6">
-            <div className={`${styles.depoimento}`}>
+       <section className="bg-secondary">
+         <div className="container">
+           <div className={styles.testimonialGrid}>
+             <div className={styles.testimonialTitle}>
+                <h1 className="section-title" style={{ color: "#FFF" }}>
+                  O que nossos clientes dizem sobre nós
+                </h1>
+             </div>
+             <div className={styles.testimonialContent}>
+                <div className={styles.depoimento}>
                   <div>
-                    <img src="/logo-funeraria.png" style={{ maxWidth: "100px", width: "100%" }} alt="logo cliente funerária central de barueri" />
+                    <img src="/logo-funeraria.png" style={{ maxWidth: "100px", width: "100%", borderRadius: "12px" }} alt="logo cliente funerária central de barueri" />
                   </div>
                   <div>
-                    <h1>Funerária Central de Barueri</h1>
-                    <span>"O sistema é bom e não dá problemas, e quando acontece, <br/> a Linqcode sempre se prontifica em resolvê-los."</span><br/>
-                    <span>Sergio</span>
+                    <h2 style={{ marginTop: 0, marginBottom: "0.5rem" }}>Funerária Central de Barueri</h2>
+                    <p style={{ fontSize: "1.1rem", fontStyle: "italic", opacity: 0.9, lineHeight: 1.6 }}>&ldquo;O sistema é bom e não dá problemas, e quando acontece, a Linqcode sempre se prontifica em resolvê-los.&rdquo;</p>
+                    <span style={{ opacity: 0.7 }}>Sergio</span>
                   </div>
                 </div>
+             </div>
            </div>
          </div>
        </section>
 
-       <section>
+       <section className={styles.sectionClientes}>
          <div className="container">
-          <h1 className="section-title secondary" >Envie seus dados <br /> que entraremos em contato com você.</h1>
-          <FormContato className={styles.formulario} />
+           <h1 className="section-title">
+             Nossos clientes
+             <hr />
+           </h1>
+           <div className={styles.clientesStrip}>
+             <div className={styles.clienteItem}>
+               <img className={styles.clienteLogoHome} src="/starsoft.png" alt="StarSoft" />
+               <span className={styles.clienteNome}>StarSoft</span>
+             </div>
+             <div className={styles.clienteItem}>
+               <img className={styles.clienteLogoHome} src="/logo-antaresgolden.png" alt="Antares Golden" />
+               <span className={styles.clienteNome}>Antares Golden</span>
+             </div>
+             <div className={styles.clienteItem}>
+               <img className={styles.clienteLogoHome} src="/logo-brentservice.png" alt="Brent Service" />
+               <span className={styles.clienteNome}>Brent Service</span>
+             </div>
+             <div className={styles.clienteItem}>
+               <img className={styles.clienteLogoHome} src="/autonomoz.png" alt="Autonomoz" />
+               <span className={styles.clienteNome}>Autonomoz</span>
+             </div>
+             <div className={styles.clienteItem}>
+               <img className={styles.clienteLogoHome} src="/agile-innovatti-icon.png" alt="Agile Innovatti" />
+               <span className={styles.clienteNome}>Agile Innovatti</span>
+             </div>
+             <div className={styles.clienteItem}>
+               <img className={styles.clienteLogoHome} src="/logo-funeraria.png" alt="Funerária Central" />
+               <span className={styles.clienteNome}>Funerária Central</span>
+             </div>
+             <div className={styles.clienteItem}>
+               <img className={styles.clienteLogoHome} src="/schioppa.webp" alt="Schioppa" />
+               <span className={styles.clienteNome}>Schioppa</span>
+             </div>
+             <div className={styles.clienteItem}>
+               <img className={styles.clienteLogoHome} src="/ministrapp-icon.png" alt="MinistrApp" />
+               <span className={styles.clienteNome}>MinistrApp</span>
+             </div>
+           </div>
+           <div style={{ textAlign: "center", marginTop: "2rem" }}>
+             <Link href="/clientes" className={styles.btnPrimary}>
+               VER TODOS OS CLIENTES
+             </Link>
+           </div>
+         </div>
+       </section>
+
+       <section className={styles.sectionContato}>
+         <div className="container">
+          <h1 className="section-title" style={{ color: "#FFF" }}>Envie seus dados<br/> que entraremos em contato com você.</h1>
+          <div className={styles.contatoGrid}>
+            <div className={styles.contatoForm}>
+              <FormContato className={styles.formulario} />
+            </div>
+          </div>
          </div>
        </section>
     </Layout>

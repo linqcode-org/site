@@ -1,3 +1,7 @@
+.container {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 .menu {
     display: flex;
     align-items: center;
@@ -7,6 +11,7 @@
   .menu img {
     width: 150px;
     padding: 15px 0;
+    transition: width 0.3s ease;
   }
   
   .menu nav {
@@ -16,6 +21,8 @@
 
   .menu nav ul {
     display: flex;
+    margin: 0;
+    padding: 0;
   }
   
   .menu nav ul li {
@@ -24,11 +31,14 @@
   
   .menu nav ul li a {
     text-decoration: none;
-    color:#191C24;
+    color: #191C24;
     text-transform: uppercase;
-    font-size: 1.2rem; 
-    padding: 2.4rem;
-    transition: all 250ms linear 0s;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2rem 1.2rem;
+    transition: color 0.2s ease;
+    display: inline-block;
   }
   
   .menu nav ul li a:hover {
@@ -39,57 +49,43 @@
     color: #FF6000 !important;
   }
   
-
-  .menuOpacityOn {
+  .menuTransparent {
       position: absolute;
       width: 100%;
-      background-color: transparent  !important;
-      transition: all 250ms linear 0s;
-    }
+      background-color: transparent;
+      transition: all 0.3s ease;
+  }
+
+  .menuTransparent .menu nav ul li a {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .menuTransparent .menu nav ul li a:hover {
+    color: #FF6000;
+  }
   
-  .menuOpacityOff {
-    position: absolute;
+  .menuSolid {
+    position: fixed;
+    top: 0;
     width: 100%;
-    background-color: #FFF;
-    box-shadow: #191C24 0px 0px 10px 0px;
-    transition: all 250ms linear 0s;
-  }
-  
-  .menuOpacityOn nav {
-    height: 8rem;
-  }
-  
-  .menuOpacityOff nav {
-    height: 7rem;
-    transition: height 0.5s;
-  }
-  
-  .menuOpacityOn nav img {
-    width: 10rem;
-    /* transition: width 0.5s; */
-  }
-  
-  .menuOpacityOff nav img {
-    width: 8rem;
-    transition: width 0.5s;
+    background-color: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    z-index: 1000;
   }
 
+  .menuSolid .menu img {
+    width: 130px;
+  }
 
-.menuDark .menu nav ul li a {
-    color: #FFF;
-}
-
-.menuDark .menu nav ul li a:hover {
-  color: #FF6000;
-}
-
-.menuDark {
-  background-color: black;
-}
+  .menuDark {
+    background-color: transparent;
+  }
 
 @media (max-width: 781px) {
 
-  .menuOpacityOn {
+  .menuTransparent {
     position: absolute;
     background-color: initial;
   }
@@ -102,29 +98,32 @@
     .two,
     .three {
         background-color: #FF6000;
-        height: 5px;
+        height: 3px;
         width: 100%;
-        margin: 6px auto;
+        margin: 5px auto;
+        border-radius: 2px;
         transition-duration: 0.3s;
     }
 
     .menuToggle {
-        width: 40px;
-        height: 30px;
+        width: 32px;
+        height: 24px;
         margin-right: 20px;
+        cursor: pointer;
     }
 
-    /* fullscreen */
     .menuSection.on {
-        position: absolute;
+        position: fixed;
         width: 100vw;
         height: 100vh;
         top: 0;
         left: 0;
-        background-color: #191C24;
+        background-color: rgba(25, 28, 36, 0.98);
+        backdrop-filter: blur(10px);
         display: flex;
         align-items: center;
         justify-content: center;
+        z-index: 9999;
     }
 
     .menuSection.on nav {
@@ -137,11 +136,12 @@
     .menuSection.on .menuToggle {
         position: absolute;
         right: 25px;
-        top: 15px;
+        top: 25px;
     }
 
     .menuSection.on .menuToggle .one {
         transform: rotate(45deg) translate(7px, 7px);
+        background-color: #FFF;
     }
 
     .menuSection.on .menuToggle .two {
@@ -150,6 +150,7 @@
 
     .menuSection.on .menuToggle .three {
         transform: rotate(-45deg) translate(8px, -9px);
+        background-color: #FFF;
     }
 
     .menuSection.on nav ul {
@@ -158,12 +159,22 @@
         padding: 0;
     }
 
-    .menuSection.on nav ul a{
-        transition-duration: 0.5s;
-        font-size: 3rem;
-        line-height: 4rem;
+    .menuSection.on nav ul li a {
+        transition-duration: 0.3s;
+        font-size: 2rem;
+        line-height: 3.5rem;
         display: block;   
         color: #FFF;
+        padding: 0.5rem;
+    }
+
+    .menuSection.on nav ul li a:hover {
+        color: #FF6000;
+    }
+
+    .menuSolid .menu img,
+    .menuTransparent .menu img {
+      width: 120px;
     }
 
 }

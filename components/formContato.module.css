@@ -1,4 +1,35 @@
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
 .formulario input, 
-.formulario textarea{
-  margin-top: 10px;
+.formulario textarea {
+  margin-top: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFF;
+  border-radius: 8px;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+  border-color: #FF6000;
+  box-shadow: 0 0 0 3px rgba(255, 96, 0, 0.15);
+}
+
+.formulario input::placeholder,
+.formulario textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.formulario label {
+  color: #FFF;
+  font-weight: 500;
+}
+
+.formulario button {
+  margin-top: 1rem;
+  padding: 14px 32px;
+  font-weight: 700;
 }

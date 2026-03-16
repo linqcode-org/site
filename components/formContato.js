@@ -46,33 +46,33 @@ export default function FormContato({ className }){
         });
     }
 
-    const { register, handleSubmit, reset, errors } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     return <form id="formulario" className={`${className} || ${styles.formulario}`} onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
                 <div className="col-6">
                   <label>Nome</label><br/>
-                  <input id="nome" name="nome" required ref={register({ required: true })} />
+                  <input id="nome" required {...register("nome", { required: true })} />
                 </div>
                 <div className="col-6"> 
                   <label>E-mail</label><br/>
-                  <input id="email" name="email" type="email"  required ref={register({ required: true })} />
+                  <input id="email" type="email" required {...register("email", { required: true })} />
                 </div>
                 <div className="col-6">
                   <label>Empresa</label>
-                  <input id="empresa" name="empresa" ref={register} />
+                  <input id="empresa" {...register("empresa")} />
                 </div>
                 <div className="col-6">
                   <label>Telefone</label>
-                  <input id="telefone" name="telefone" required ref={register({ required: true })} />
+                  <input id="telefone" required {...register("telefone", { required: true })} />
                 </div>
                 <div className="col-12">
                   <label>Assunto</label>
-                  <input id="assunto" name="assunto" required ref={register({ required: true })} />
+                  <input id="assunto" required {...register("assunto", { required: true })} />
                 </div>
                 <div className="col-12">
                   <label>Mensagem</label>
-                  <textarea id="mensagem" name="mensagem" required ref={register} />
+                  <textarea id="mensagem" required {...register("mensagem")} />
                 </div>
                 <div className="col-12">
                   <button type="submit">Enviar</button>

@@ -3,39 +3,80 @@
     max-width: 300px;
     width: 100%;
     text-align: center;
-    padding: 0.1rem;
+    padding: 2rem 1.5rem;
     background-color: white;
-    box-shadow: #B63533 0px 0px 1px 1px;
-    margin: 0.50rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    margin: 0.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #FF6000;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(255, 96, 0, 0.1);
+}
+
+.card:hover::before {
+    transform: scaleX(1);
 }
 
 .card hr {
-    width: 2rem;
-    height: 0.25rem;
-    background-color: #B63533;
+    width: 2.5rem;
+    height: 3px;
+    background: #FF6000;
+    border: none;
+    border-radius: 2px;
+    margin: 0.5rem auto;
 }
 
 .cardHeader {
     padding: 1rem;
     min-height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cardHeader img {
-    
+    max-height: 100px;
+    transition: transform 0.35s ease;
+}
+
+.card:hover .cardHeader img {
+    transform: scale(1.08);
 }
 
 .cardTitle {
-    font-size: 2rem;
-    padding: 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 0.75rem;
+    color: #191C24;
 }
 
 .cardBody {
-    padding: 1.5rem;
-    font-size: 1.2rem;
-    min-height: 10rem;
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+    min-height: 8rem;
+    color: #444;
+    line-height: 1.6;
 }
 
 .footer {
-    padding: 1.5rem;
-    font-size: 1.2rem;
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
 }

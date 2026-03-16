@@ -4,94 +4,56 @@ import ActiveLink from './activeLink'
 import Brand from './brand'
 import styles from './menu.module.css'
 
-function ItemMenu({href, className, children }){
+function ItemMenu({href, className, children, onClick }){
     return (
-        <ActiveLink href={href} activeClassName={`${className || ''} ${styles.active}`}><a>{children}</a></ActiveLink>
+        <ActiveLink href={href} activeClassName={`${className || ''} ${styles.active}`} onClick={onClick}>{children}</ActiveLink>
     )
 }
 
 export default function Menu({ className, isDark }){
 
-    const [styleMenu, setStyleMenu] = useState(styles.menuOpacityOn);
+    const [isScrolled, setIsScrolled] = useState(false);
     const [toggle, setToggle] = useState(false);
-    const [styleOn, setStyleOn] = useState('');
 
     useEffect(() => {
-        window.addEventListener('scroll', (event) => handleScrol(event));
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+        handleScroll();
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, [])
 
-    useEffect(() => {
+    const handleToggle = () => setToggle(!toggle);
+    const closeMenu = () => setToggle(false);
 
-        setStyleOn(toggle ? styles.on : '');
-
-    }, [toggle])
-
-    const handleScrol = (event) => {
-
-        event.preventDefault();
-        let nTop = event.srcElement.scrollingElement.scrollTop;
-
-        if (nTop > 50){
-        setStyleMenu(styles.menuOpacityOff)
-        }else{
-        setStyleMenu(styles.menuOpacityOn)
-        }
-    }
-
-    const handleToogle = () => setToggle(!toggle);
+    const menuStyle = isDark && !isScrolled && !toggle 
+        ? styles.menuTransparent 
+        : styles.menuSolid;
 
     return (
-        <div className={`${isDark ? styles.menuDark : ''} ${styleMenu || ''} ${className || ''} ${styles.container}`}>
+        <div className={`${isDark ? styles.menuDark : ''} ${menuStyle} ${className || ''} ${styles.container}`}>
             <div className="container">
                 <div className={styles.menu}>
-                    <Link href="/"><a><Brand isBlack={isDark} /></a></Link>
-                    <div className={`${styles.menuSection} ${styleOn}`}>
-                        <div className={styles.menuToggle} onClick={() => handleToogle()}>
+                    <Link href="/"><Brand isBlack={isDark && !isScrolled && !toggle} /></Link>
+                    <div className={`${styles.menuSection} ${toggle ? styles.on : ''}`}>
+                        <div className={styles.menuToggle} onClick={handleToggle}>
                             <div className={styles.one}></div>
                             <div className={styles.two}></div>
                             <div className={styles.three}></div>
                         </div>
                         <nav>
                             <ul>
-                            <li>
-                                <ItemMenu href="/">Home</ItemMenu>
-                            </li>
-                            <li>
-                                <ItemMenu href="/sobre">Quem somos</ItemMenu>
-                            </li>
-                            <li>
-                                <ItemMenu href="/solucoes">Soluções</ItemMenu>  
-                            </li>
-                            <li>
-                                <ItemMenu href="/contato">Contato</ItemMenu>
-                            </li>
+                                <li><ItemMenu href="/" onClick={closeMenu}>Home</ItemMenu></li>
+                                <li><ItemMenu href="/sobre" onClick={closeMenu}>Quem somos</ItemMenu></li>
+                                <li><ItemMenu href="/solucoes" onClick={closeMenu}>Soluções</ItemMenu></li>
+                                <li><ItemMenu href="/clientes" onClick={closeMenu}>Clientes</ItemMenu></li>
+                                <li><ItemMenu href="/contato" onClick={closeMenu}>Contato</ItemMenu></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
             </div>
-            
-            {/* <div className="container">
-                <nav className={styles.nav}>
-                    <div className={styles.navItem}>
-                        <Link href="/"><a><Brand isBlack={isDark} /></a></Link>
-                        <div className={`${styles.links}`}>
-                            <ItemMenu href="/">Home</ItemMenu>
-                            <ItemMenu href="/sobre">Quem somos</ItemMenu>
-                            <ItemMenu href="/solucoes">Soluções</ItemMenu>
-                            {/* <ItemMenu href="/projetos">Projetos</ItemMenu>
-                            <ItemMenu href="/clientes">Clientes</ItemMenu> }
-                            <ItemMenu href="/contato">Contato</ItemMenu>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            <div className={`${styles.menuIcon}`}>
-                <div className={styles.lineOnde} />
-                <div className={styles.lineTwo} />
-                <div className={styles.lineThree} />
-            </div> */}
-
         </div>
     )
 }
