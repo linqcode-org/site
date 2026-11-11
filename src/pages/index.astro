@@ -32,7 +32,6 @@ const petalLabels = ["Web sites", "E-commerce", "Mobile", "Custom app"];
       </div>
       <div class="hero-mark">
         <Mark id="hero" assemble class="hero-symbol" />
-        <span class="core-label">IA + Cloud</span>
         <ul class="petal-labels" aria-label="O que desenvolvemos">
           {petalLabels.map((label, i) => <li class={`pl pl${i}`}>{label}</li>)}
         </ul>
@@ -65,7 +64,7 @@ const petalLabels = ["Web sites", "E-commerce", "Mobile", "Custom app"];
       </div>
       <div class="core on-night">
         <div class="core-head">
-          <span class="core-square" aria-hidden="true"></span>
+          <Mark id="core" class="core-mark" />
           <h3>{core.title}</h3>
           <p class="soft">{core.text}</p>
         </div>
@@ -231,26 +230,6 @@ const petalLabels = ["Web sites", "E-commerce", "Mobile", "Custom app"];
     width: 76%;
     height: 76%;
   }
-  /* The white square of the symbol is the core: AI and cloud behind every delivery. */
-  .hero-mark {
-    container-type: inline-size;
-  }
-  .core-label {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    translate: -50% -50%;
-    font-size: 3.4cqi;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    white-space: nowrap;
-    color: var(--ink);
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .core-label {
-      animation: label-in 500ms ease 1050ms both;
-    }
-  }
   .petal-labels {
     margin: 0;
     padding: 0;
@@ -348,12 +327,9 @@ const petalLabels = ["Web sites", "E-commerce", "Mobile", "Custom app"];
     gap: 1rem;
     align-content: start;
   }
-  .core-square {
-    width: 2.25rem;
-    height: 2.25rem;
-    background: #fff;
-    box-shadow: 0 0 0 6px rgb(255 96 0 / 0.9);
-    margin: 6px 0 0.5rem 6px;
+  .core :global(.core-mark) {
+    width: 3.25rem;
+    margin-bottom: 0.25rem;
   }
   .core-head h3 {
     font-size: var(--step-2);
