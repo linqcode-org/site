@@ -52,7 +52,15 @@ for (const page of pages) {
   if (!/<title>[^<]{10,}<\/title>/.test(html)) problems.push(`${name}: missing <title>`);
   const indexed = !/<meta name="robots" content="noindex/.test(html);
   if (indexed && !/<meta name="description" content="[^"]{50,}"/.test(html)) problems.push(`${name}: short or missing description`);
-  if (!/<link rel="canonical" href="https:\/\/[^"]+"/.test(html)) problems.push(`${name}: missing canonical`);
+  const canonical = html.match(/<link rel="canonical" href="(https:\/\/[^"]+)"/)?.[1];
+  if (!canonical) problems.push(`${name}: missing canonical`);
+  else {
+    // index.html -> "/", sobre.html -> "/sobre", contato/obrigado.html -> "/contato/obrigado".
+    const expected = "/" + name.replace(/\\/g, "/").replace(/\.html$/, "").replace(/(^|\/)index$/, "");
+    if (new URL(canonical).pathname !== expected) problems.push(`${name}: canonical ${canonical}, expected path ${expected}`);
+    const ogUrl = html.match(/<meta property="og:url" content="([^"]+)"/)?.[1];
+    if (ogUrl !== canonical) problems.push(`${name}: og:url ${ogUrl} differs from canonical`);
+  }
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try {
       JSON.parse(m[1]);

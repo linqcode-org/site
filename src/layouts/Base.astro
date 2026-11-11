@@ -16,7 +16,9 @@ interface Props {
   ogImage?: string;
 }
 const { title, description, schema = [], noindex = false, ogImage = "/og/linqcode.jpg" } = Astro.props;
-const canonical = new URL(Astro.url.pathname.replace(/\/index$/, "/").replace(/\.html$/, ""), company.url).href;
+// The build passes "/index.html" for the home page: drop ".html" first, then "/index", so the home
+// canonical is the site root and not /index (which redirects to /).
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, "").replace(/\/index$/, "/"), company.url).href;
 const ogImageUrl = new URL(ogImage, company.url).href;
 const graph = { "@context": "https://schema.org", "@graph": [organizationLd(), websiteLd(), ...schema] };
 ---
