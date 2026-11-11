@@ -1,0 +1,111 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import ContactForm from "../components/ContactForm.astro";
+import Icon from "../components/Icon.astro";
+import { company } from "../data/site";
+import { breadcrumbLd } from "../data/structured";
+---
+
+<Base
+  title="Contato | Linqcode"
+  description={`Fale com a Linqcode pelo WhatsApp ${company.phoneDisplay}, pelo e-mail ${company.email} ou envie seus dados que entraremos em contato com você.`}
+  schema={[
+    breadcrumbLd([{ name: "Contato", path: "/contato" }]),
+    { "@type": "ContactPage", url: `${company.url}/contato`, name: "Contato | Linqcode", about: { "@id": `${company.url}/#organizacao` } },
+  ]}
+>
+  <PageHead crumb="Contato" title="Tudo certo! Vamos começar." lede="Envie seus dados que entraremos em contato com você." petal={0} />
+
+  <section>
+    <div class="wrap contact-grid">
+      <ContactForm />
+      <aside aria-labelledby="direto">
+        <h2 id="direto">Contate-nos</h2>
+        <ul>
+          <li>
+            <a href={company.whatsapp} target="_blank" rel="noopener">
+              <span class="ico"><Icon name="whatsapp" /></span>
+              <span><small>WhatsApp</small>{company.phoneDisplay}</span>
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${company.email}`}>
+              <span class="ico"><Icon name="mail" /></span>
+              <span><small>E-mail</small>{company.email}</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Services link here with ?assunto=<serviço>; start the subject with it.
+  const subject = new URLSearchParams(location.search).get("assunto");
+  const field = document.querySelector<HTMLInputElement>("#cf-assunto");
+  if (subject && field && !field.value) field.value = `Orçamento: ${subject.slice(0, 120)}`;
+</script>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+  aside {
+    display: grid;
+    gap: 1.25rem;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: var(--radius);
+    background: var(--mist);
+  }
+  aside h2 {
+    font-size: var(--step-2);
+  }
+  aside ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+  }
+  aside a {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    text-decoration: none;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+  }
+  aside a:hover {
+    color: var(--orange-ink);
+  }
+  aside small {
+    display: block;
+    font-size: var(--step--1);
+    font-weight: 400;
+    color: var(--ink-mute);
+  }
+  .ico {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--orange-ink);
+  }
+  .ico :global(.icon) {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+  @media (max-width: 860px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

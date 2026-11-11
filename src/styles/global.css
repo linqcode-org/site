@@ -1,0 +1,242 @@
+/* Linqcode tokens: brand ink #191C24, brand orange #FF6000 and the symbol's red #D2353A.
+   Orange is used for shapes and large type only; text-size orange uses --orange-ink (AA on white). */
+:root {
+  --ink: #191c24;
+  --ink-soft: #4a4f5c;
+  --ink-mute: #6b7080;
+  --paper: #ffffff;
+  --mist: #f3f4f6;
+  --line: #e2e4ea;
+  --orange: #ff6000;
+  --orange-ink: #c24600;
+  --red: #d2353a;
+  --night: #191c24;
+  --night-2: #232733;
+  --night-line: #343949;
+  --on-night: #f5f6f8;
+  --on-night-soft: #b9bdc9;
+
+  --font: var(--font-outfit), system-ui, sans-serif;
+  --step--1: 0.9rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.3rem;
+  --step-2: clamp(1.6rem, 2.4vw, 2rem);
+  --step-3: clamp(2.1rem, 4vw, 3.1rem);
+  --step-4: clamp(2.6rem, 6.2vw, 5rem);
+
+  --wrap: 1200px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --radius: 22px;
+  --radius-sm: 12px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  font-weight: 350;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--step-4);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+h2 {
+  font-size: var(--step-3);
+}
+
+h3 {
+  font-size: var(--step-1);
+  letter-spacing: -0.015em;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--orange);
+  color: #fff;
+}
+
+.wrap {
+  width: min(100% - 2 * var(--gutter), var(--wrap));
+  margin-inline: auto;
+}
+
+.lede {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 38ch;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-sm);
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Buttons: the primary action is the orange pill; the quiet one is an outlined pill. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 3.1rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  font: inherit;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+.btn svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+.btn-primary {
+  background: var(--orange);
+  color: #fff;
+  /* White on #FF6000 is 3:1; the weight and size keep it in "large text" territory. */
+  font-weight: 600;
+}
+.btn-primary:hover {
+  background: #e85600;
+}
+.btn-quiet {
+  border-color: currentColor;
+  color: var(--ink);
+}
+.btn-quiet:hover {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+.on-night .btn-quiet {
+  color: var(--on-night);
+}
+.on-night .btn-quiet:hover {
+  background: var(--on-night);
+  color: var(--ink);
+  border-color: var(--on-night);
+}
+
+.text-link {
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+.text-link:hover {
+  color: var(--orange-ink);
+}
+
+section {
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+
+.section-head {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  max-width: 46rem;
+}
+.section-head p {
+  color: var(--ink-soft);
+  font-size: var(--step-1);
+  line-height: 1.5;
+}
+
+.on-night {
+  background: var(--night);
+  color: var(--on-night);
+}
+.on-night .section-head p,
+.on-night .soft {
+  color: var(--on-night-soft);
+}
+
+/* A petal as a bullet: the symbol's half disc, used wherever a list item stands for one of the brand's ideas. */
+.petal-bullet {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+}

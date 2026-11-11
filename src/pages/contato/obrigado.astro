@@ -1,0 +1,37 @@
+---
+// Landing page for browsers without JavaScript: the Function redirects here after the form post
+// (with ?erro=1 when sending failed). Not indexed.
+import Base from "../../layouts/Base.astro";
+import { company } from "../../data/site";
+---
+
+<Base title="Mensagem enviada | Linqcode" description="Confirmação do envio do formulário de contato." noindex>
+  <section>
+    <div class="wrap box">
+      <h1><span class="ok">Mensagem enviada.</span><span class="fail">A mensagem não foi enviada.</span></h1>
+      <p class="lede ok">Obrigado! Retornaremos o contato em breve.</p>
+      <p class="lede fail">Tente de novo ou fale com a gente pelo WhatsApp {company.phoneDisplay}.</p>
+      <p><a class="btn btn-primary" href="/">Voltar ao início</a></p>
+    </div>
+  </section>
+</Base>
+
+<script is:inline>
+  if (/[?&]erro=1/.test(location.search)) document.documentElement.classList.add("send-failed");
+</script>
+
+<style>
+  .box {
+    display: grid;
+    gap: 1.5rem;
+    min-height: 40vh;
+    align-content: center;
+  }
+  .fail,
+  :global(.send-failed) .ok {
+    display: none;
+  }
+  :global(.send-failed) .fail {
+    display: block;
+  }
+</style>

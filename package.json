@@ -1,17 +1,18 @@
 {
-  "name": "site",
-  "version": "0.1.0",
+  "name": "linqcode-site",
+  "version": "2.0.0",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build"
+    "dev": "astro dev",
+    "build": "astro build && node scripts/check-build.mjs",
+    "preview": "astro preview"
   },
   "dependencies": {
-    "next": "15.3.2",
-    "prop-types": "^15.8.1",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "react-hook-form": "^7.56.4",
-    "react-toastify": "^7.0.3"
+    "@astrojs/sitemap": "3.7.4",
+    "astro": "7.3.8"
   }
 }

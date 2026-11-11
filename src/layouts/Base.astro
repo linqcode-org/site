@@ -1,0 +1,114 @@
+---
+import { Font } from "astro:assets";
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+import { company } from "../data/site";
+import { organizationLd, websiteLd } from "../data/structured";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Extra JSON-LD nodes for this page (breadcrumbs, services...). */
+  schema?: Record<string, unknown>[];
+  noindex?: boolean;
+  ogImage?: string;
+}
+const { title, description, schema = [], noindex = false, ogImage = "/og/linqcode.jpg" } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\/index$/, "/").replace(/\.html$/, ""), company.url).href;
+const ogImageUrl = new URL(ogImage, company.url).href;
+const graph = { "@context": "https://schema.org", "@graph": [organizationLd(), websiteLd(), ...schema] };
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
+    <meta name="theme-color" content="#191C24" />
+    <meta name="author" content={company.legalName} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={company.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Linqcode: consultoria e desenvolvimento de sistemas" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="facebook-domain-verification" content={company.facebookDomainVerification} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="Resumo do site para assistentes de IA" />
+
+    <Font cssVariable="--font-outfit" preload />
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
+
+    {/* Google Analytics 4, loaded once the page is idle so it never competes with the first paint. */}
+    <script is:inline define:vars={{ id: company.analyticsId }}>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+      gtag("js", new Date());
+      gtag("config", id);
+      addEventListener("load", function () {
+        (window.requestIdleCallback || setTimeout)(function () {
+          var s = document.createElement("script");
+          s.async = true;
+          s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+          document.head.appendChild(s);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <Header />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <Footer />
+    <a class="wa-float" href={company.whatsapp} target="_blank" rel="noopener" aria-label="Falar com a Linqcode no WhatsApp">
+      <Icon name="whatsapp" />
+    </a>
+  </body>
+</html>
+
+<style>
+  .wa-float {
+    position: fixed;
+    right: clamp(1rem, 3vw, 1.75rem);
+    bottom: clamp(1rem, 3vw, 1.75rem);
+    z-index: 40;
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 0 10px 30px -10px rgb(25 28 36 / 0.6);
+    transition: background-color 160ms ease;
+  }
+  .wa-float:hover {
+    background: var(--orange);
+  }
+  .wa-float :global(.icon) {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+</style>

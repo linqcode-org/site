@@ -1,0 +1,174 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo-black.png";
+import Icon from "./Icon.astro";
+import { company, nav } from "../data/site";
+
+const path = Astro.url.pathname.replace(/\.html$/, "");
+---
+
+<header class="site-header" data-open="false">
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label="Linqcode, página inicial">
+      <Image src={logo} alt="" width={124} height={32} loading="eager" fetchpriority="high" />
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <span class="when-closed"><Icon name="menu" /><span class="visually-hidden">Abrir menu</span></span>
+      <span class="when-open"><Icon name="close" /><span class="visually-hidden">Fechar menu</span></span>
+    </button>
+    <nav id="menu-principal" class="menu" aria-label="Principal">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={path === item.href ? "page" : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="btn btn-primary menu-cta" href={company.whatsapp} target="_blank" rel="noopener">
+        <Icon name="whatsapp" />Falar no WhatsApp
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  (function () {
+    var header = document.currentScript.previousElementSibling;
+    var button = header.querySelector(".menu-toggle");
+    button.addEventListener("click", function () {
+      var open = header.dataset.open !== "true";
+      header.dataset.open = String(open);
+      button.setAttribute("aria-expanded", String(open));
+    });
+  })();
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgb(255 255 255 / 0.92);
+    backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 4.5rem;
+  }
+  .brand {
+    display: block;
+    flex: none;
+  }
+  .brand img {
+    display: block;
+    width: 124px;
+    height: auto;
+  }
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .menu ul {
+    display: flex;
+    gap: 1.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .menu ul a {
+    position: relative;
+    padding-block: 0.4rem;
+    text-decoration: none;
+    font-weight: 450;
+    color: var(--ink-soft);
+  }
+  .menu ul a:hover,
+  .menu ul a[aria-current="page"] {
+    color: var(--ink);
+  }
+  .menu ul a[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.15rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--orange);
+  }
+  .menu-cta {
+    min-height: 2.6rem;
+    padding: 0.45rem 1.15rem;
+    font-size: 0.95rem;
+  }
+  .menu-toggle {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: var(--mist);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .menu-toggle :global(.icon) {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+  .when-open {
+    display: none;
+  }
+
+  @media (max-width: 860px) {
+    .menu-toggle {
+      display: grid;
+    }
+    .menu {
+      display: none;
+      position: absolute;
+      inset: 100% 0 auto 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1.25rem;
+      padding: 1rem var(--gutter) 1.5rem;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 24px 40px -24px rgb(25 28 36 / 0.25);
+    }
+    .menu ul {
+      flex-direction: column;
+      gap: 0;
+    }
+    .menu ul a {
+      display: block;
+      padding: 0.85rem 0;
+      font-size: 1.15rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .menu ul a[aria-current="page"]::after {
+      display: none;
+    }
+    .menu ul a[aria-current="page"] {
+      color: var(--orange-ink);
+    }
+    .site-header[data-open="true"] .menu {
+      display: flex;
+    }
+    .site-header[data-open="true"] .when-open {
+      display: contents;
+    }
+    .site-header[data-open="true"] .when-closed {
+      display: none;
+    }
+  }
+</style>
