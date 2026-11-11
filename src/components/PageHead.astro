@@ -1,0 +1,81 @@
+---
+// Opening block of the inner pages: breadcrumb, title and lede on the left, one petal of the symbol on the right.
+interface Props {
+  title: string;
+  lede?: string;
+  crumb: string;
+  /** Which petal (0–3) decorates this page, so each page keeps its own quarter of the symbol. */
+  petal?: 0 | 1 | 2 | 3;
+}
+const { title, lede, crumb, petal = 0 } = Astro.props;
+---
+
+<section class="page-head">
+  <div class="wrap head-grid">
+    <div class="copy">
+      <nav aria-label="Você está em" class="crumbs">
+        <a href="/">Início</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{crumb}</span>
+      </nav>
+      <h1>{title}</h1>
+      {lede && <p class="lede">{lede}</p>}
+      <slot />
+    </div>
+    <svg class="petal" viewBox="0 0 100 100" aria-hidden="true" style={`--turn: ${petal * 90}deg`}>
+      <defs>
+        <linearGradient id="ph-g" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#D2353A" /><stop offset="1" stop-color="#FF6000" />
+        </linearGradient>
+      </defs>
+      <path d="M0 100A100 100 0 0 1 100 0V100Z" fill="url(#ph-g)" />
+      <rect x="62" y="62" width="38" height="38" fill="#fff" />
+    </svg>
+  </div>
+</section>
+
+<style>
+  .page-head {
+    padding-block: clamp(2.5rem, 6vw, 5rem);
+    background: var(--mist);
+    overflow: hidden;
+  }
+  .head-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 2rem;
+  }
+  .copy {
+    display: grid;
+    gap: 1.25rem;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 5.4vw, 4.25rem);
+    max-width: 16ch;
+  }
+  .crumbs {
+    display: flex;
+    gap: 0.5rem;
+    font-size: var(--step--1);
+    color: var(--ink-mute);
+  }
+  .crumbs a {
+    color: var(--ink-soft);
+  }
+  .lede {
+    max-width: 44ch;
+  }
+  .petal {
+    width: clamp(110px, 18vw, 220px);
+    transform: rotate(var(--turn));
+  }
+  @media (max-width: 640px) {
+    .head-grid {
+      grid-template-columns: 1fr;
+    }
+    .petal {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,38 @@
+---
+import { Picture } from "astro:assets";
+import web from "../assets/images/svc-web.png";
+import ecommerce from "../assets/images/svc-ecommerce.png";
+import mobile from "../assets/images/svc-mobile.png";
+import custom from "../assets/images/svc-custom.png";
+import ia from "../assets/images/svc-ia.png";
+import cloud from "../assets/images/svc-cloud.png";
+import type { ServiceKey } from "../data/site";
+
+interface Props {
+  service: ServiceKey;
+  size?: number;
+  class?: string;
+}
+const art = { web, ecommerce, mobile, custom, ia, cloud };
+const alt = {
+  web: "Ilustração de uma janela de navegador com o símbolo da Linqcode",
+  ecommerce: "Ilustração de uma sacola de compras laranja",
+  mobile: "Ilustração de um smartphone com formas da marca na tela",
+  custom: "Ilustração de quatro peças que se encaixam em volta de um cubo branco",
+  ia: "Ilustração de um cubo branco com um chip, ligado a quatro peças laranja como sinapses",
+  cloud: "Ilustração de uma nuvem laranja apoiada sobre um servidor",
+};
+const { service, size = 220, class: className } = Astro.props;
+---
+
+<Picture
+  src={art[service]}
+  alt={alt[service]}
+  formats={["avif"]}
+  fallbackFormat="webp"
+  widths={[size, size * 2]}
+  sizes={`${size}px`}
+  width={size}
+  height={size}
+  class={className}
+/>

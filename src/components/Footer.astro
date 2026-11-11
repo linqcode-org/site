@@ -1,0 +1,156 @@
+---
+import { Image } from "astro:assets";
+import logoWhite from "../assets/logo-white.png";
+import Icon from "./Icon.astro";
+import { company, nav, allServices } from "../data/site";
+
+const socialIcon = { Instagram: "instagram", LinkedIn: "linkedin", Facebook: "facebook" } as const;
+---
+
+<footer class="site-footer on-night">
+  <div class="wrap grid">
+    <div class="about">
+      <Image src={logoWhite} alt="Linqcode" width={140} height={36} densities={[1, 2]} />
+      <p class="soft">
+        Consultoria e desenvolvimento de sistemas para empresas que precisam unificar processos e evoluir com
+        tecnologia.
+      </p>
+      <ul class="social" aria-label="Redes sociais">
+        {
+          company.social.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener" aria-label={`Linqcode no ${s.name}`}>
+                <Icon name={socialIcon[s.name]} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <nav aria-label="Rodapé">
+      <h2>Nos conheça</h2>
+      <ul>
+        <li><a href="/">Início</a></li>
+        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div>
+      <h2>O que oferecemos</h2>
+      <ul>
+        {allServices.map((s) => <li><a href={`/solucoes#${s.anchor}`}>{s.name}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2>Contate-nos</h2>
+      <ul class="contact">
+        <li>
+          <a href={company.whatsapp} target="_blank" rel="noopener"><Icon name="whatsapp" />{company.phoneDisplay}</a>
+        </li>
+        <li>
+          <a href={`mailto:${company.email}`}><Icon name="mail" />{company.email}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <span>{company.legalName}</span>
+    <span>CNPJ {company.cnpj}</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding-block: clamp(3.5rem, 7vw, 5rem) 2rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .about {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+    max-width: 22rem;
+  }
+  .about img {
+    width: 140px;
+    height: auto;
+  }
+  h2 {
+    font-size: 1rem;
+    letter-spacing: 0;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.6rem;
+  }
+  a {
+    color: var(--on-night-soft);
+    text-decoration: none;
+  }
+  a:hover {
+    color: #fff;
+  }
+  .contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .contact :global(.icon) {
+    width: 1.2rem;
+    height: 1.2rem;
+    color: var(--orange);
+  }
+  .social {
+    display: flex;
+    gap: 0.6rem;
+  }
+  .social a {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    border: 1px solid var(--night-line);
+  }
+  .social a:hover {
+    border-color: var(--orange);
+  }
+  .social :global(.icon) {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--night-line);
+    color: var(--on-night-soft);
+    font-size: var(--step--1);
+  }
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .about {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 520px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,191 @@
+---
+import { Picture } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { about } from "../data/site";
+import { breadcrumbLd } from "../data/structured";
+import pessoas from "../assets/images/sobre-pessoas.png";
+import empresas from "../assets/images/sobre-empresas.png";
+
+const art = {
+  pessoas: { src: pessoas, alt: "Ilustração de duas pessoas ligadas por um arco laranja" },
+  empresas: { src: empresas, alt: "Ilustração de um pequeno prédio comercial com detalhes da marca" },
+} as const;
+---
+
+<Base
+  title="Quem somos | Linqcode"
+  description="A Linqcode é especializada em consultoria de sistemas e desenvolvimento de softwares que simplificam e unificam os processos de seus clientes. Conheça nossos valores."
+  schema={[breadcrumbLd([{ name: "Quem somos", path: "/sobre" }])]}
+>
+  <PageHead crumb="Quem somos" title={about.headline} lede={about.text} petal={2} />
+
+  <section class="commitment">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Nosso compromisso</h2>
+      </div>
+      <div class="pair">
+        {
+          about.commitments.map((c) => (
+            <article>
+              <Picture
+                src={art[c.key as keyof typeof art].src}
+                alt={art[c.key as keyof typeof art].alt}
+                formats={["avif"]}
+                fallbackFormat="webp"
+                widths={[220, 440]}
+                sizes="220px"
+                width={220}
+                height={220}
+              />
+              <h3>{c.name}</h3>
+              <p>{c.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="values on-night">
+    <div class="wrap values-grid">
+      <div class="values-intro">
+        <h2>Valores</h2>
+        {about.valuesIntro.map((p) => <p class="soft">{p}</p>)}
+      </div>
+      <dl>
+        {
+          about.values.map((v) => (
+            <div>
+              <dt>{v.name}</dt>
+              <dd class="soft">{v.text}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="extras">
+    <div class="wrap extras-grid">
+      {
+        about.extras.map((e) => (
+          <div>
+            <h2>{e.name}</h2>
+            <p>{e.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .pair article {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: var(--radius);
+    background: var(--mist);
+  }
+  .pair article:first-child {
+    border-bottom-right-radius: 96px;
+  }
+  .pair article:last-child {
+    border-top-left-radius: 96px;
+  }
+  .pair img {
+    width: 160px;
+    height: auto;
+  }
+  .pair h3 {
+    font-size: var(--step-2);
+  }
+  .pair p {
+    color: var(--ink-soft);
+    max-width: 48ch;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+  .values-intro {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+  }
+  .values-intro p {
+    font-size: var(--step-1);
+    line-height: 1.5;
+    max-width: 40ch;
+  }
+  dl {
+    margin: 0;
+  }
+  dl div {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 1.5rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--night-line);
+  }
+  dl div:last-child {
+    border-bottom: 1px solid var(--night-line);
+  }
+  dt {
+    font-size: var(--step-1);
+    font-weight: 600;
+    color: #fff;
+  }
+  dd {
+    margin: 0;
+  }
+
+  .extras-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+  }
+  .extras-grid > div {
+    display: grid;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 3px solid var(--orange);
+  }
+  .extras-grid h2 {
+    font-size: var(--step-2);
+  }
+  .extras-grid p {
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+    max-width: 40ch;
+  }
+
+  @media (max-width: 820px) {
+    .pair,
+    .values-grid,
+    .extras-grid {
+      grid-template-columns: 1fr;
+    }
+    .pair article:first-child,
+    .pair article:last-child {
+      border-radius: var(--radius);
+    }
+    dl div {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>

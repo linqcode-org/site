@@ -1,0 +1,122 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import { clients } from "../data/clients";
+import { clientsIntro, testimonial } from "../data/site";
+import { breadcrumbLd } from "../data/structured";
+---
+
+<Base
+  title="Clientes | Linqcode"
+  description="Empresas de diversos segmentos que confiaram na Linqcode para sistemas, sites e aplicativos: StarSoft, Antares Golden, Brent Service, Autonomoz, Funerária Central de Barueri e outras."
+  schema={[breadcrumbLd([{ name: "Clientes", path: "/clientes" }])]}
+>
+  <PageHead crumb="Clientes" title="Clientes que confiaram em nosso trabalho" lede={clientsIntro} petal={3} />
+
+  <section>
+    <div class="wrap">
+      <h2 class="visually-hidden">Nossos parceiros</h2>
+      <ul class="logo-grid">
+        {
+          clients.map((c) => (
+            <li>
+              <Image src={c.logo} alt={`Logo ${c.name}`} height={72} width={Math.round((72 * c.logo.width) / c.logo.height)} />
+              <span>{c.name}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <figure class="quote">
+        <blockquote><p>{testimonial.quote}</p></blockquote>
+        <figcaption><strong>{testimonial.author}</strong>, {testimonial.client}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="cta-plain">
+    <div class="wrap">
+      <h2>Quer fazer parte desta lista?</h2>
+      <p>Entre em contato e descubra como podemos ajudar sua empresa.</p>
+      <a class="btn btn-primary" href="/contato">Entre em contato</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Rows are centred, so an incomplete last row sits in the middle instead of trailing on the left. */
+  .logo-grid {
+    --per-row: 6;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .logo-grid li {
+    flex: 0 0 calc((100% - (var(--per-row) - 1) * 1rem) / var(--per-row));
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 1rem;
+    min-height: 12rem;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    text-align: center;
+  }
+  .logo-grid img {
+    width: auto;
+    max-width: 100%;
+    height: 64px;
+    object-fit: contain;
+  }
+  @media (max-width: 1080px) {
+    .logo-grid {
+      --per-row: 4;
+    }
+  }
+  @media (max-width: 640px) {
+    .logo-grid {
+      --per-row: 2;
+    }
+    .logo-grid li {
+      min-height: 10rem;
+    }
+  }
+  .logo-grid span {
+    font-weight: 500;
+  }
+  .quote {
+    margin: clamp(3rem, 7vw, 5rem) 0 0;
+    padding-left: clamp(1.25rem, 3vw, 2rem);
+    border-left: 4px solid var(--orange);
+    max-width: 52rem;
+  }
+  .quote blockquote {
+    margin: 0;
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+  }
+  .quote figcaption {
+    margin-top: 1rem;
+    color: var(--ink-soft);
+  }
+  .cta-plain {
+    background: var(--mist);
+    text-align: center;
+  }
+  .cta-plain .wrap {
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
+  }
+  .cta-plain p {
+    color: var(--ink-soft);
+    font-size: var(--step-1);
+    margin-bottom: 0.75rem;
+  }
+</style>

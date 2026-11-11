@@ -1,0 +1,183 @@
+---
+// Posts to the Function in api/ (/api/contato). With JavaScript the page stays put and shows the result
+// under the button; without it the browser posts the form and the Function redirects to /contato/obrigado.
+interface Props {
+  subject?: string;
+  dark?: boolean;
+}
+const { subject = "", dark = false } = Astro.props;
+---
+
+<form class:list={["contact-form", { dark }]} action="/api/contato" method="post" novalidate>
+  <div class="field">
+    <label for="cf-nome">Nome</label>
+    <input id="cf-nome" name="nome" autocomplete="name" required maxlength="120" />
+  </div>
+  <div class="field">
+    <label for="cf-email">E-mail</label>
+    <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="160" />
+  </div>
+  <div class="field">
+    <label for="cf-empresa">Empresa <span class="opt">(opcional)</span></label>
+    <input id="cf-empresa" name="empresa" autocomplete="organization" maxlength="160" />
+  </div>
+  <div class="field">
+    <label for="cf-telefone">Telefone</label>
+    <input id="cf-telefone" name="telefone" type="tel" autocomplete="tel" required maxlength="40" />
+  </div>
+  <div class="field wide">
+    <label for="cf-assunto">Assunto</label>
+    <input id="cf-assunto" name="assunto" required maxlength="160" value={subject} />
+  </div>
+  <div class="field wide">
+    <label for="cf-mensagem">Mensagem</label>
+    <textarea id="cf-mensagem" name="mensagem" rows="5" maxlength="5000"></textarea>
+  </div>
+  <div class="hp" aria-hidden="true">
+    <label for="cf-website">Deixe este campo vazio</label>
+    <input id="cf-website" name="website" tabindex="-1" autocomplete="off" />
+  </div>
+  <div class="actions wide">
+    <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+    <p class="status" role="status" aria-live="polite"></p>
+  </div>
+</form>
+
+<script>
+  // Progressive enhancement: send as JSON and report inline instead of leaving the page.
+  for (const form of document.querySelectorAll<HTMLFormElement>("form.contact-form")) {
+    const status = form.querySelector<HTMLElement>(".status")!;
+    const button = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const missing = [...form.querySelectorAll<HTMLInputElement>("[required]")].find((el) => !el.checkValidity());
+      if (missing) {
+        status.dataset.state = "error";
+        status.textContent = `Confira o campo "${form.querySelector(`label[for=${missing.id}]`)?.firstChild?.textContent?.trim()}".`;
+        missing.focus();
+        return;
+      }
+      button.disabled = true;
+      button.textContent = "Enviando…";
+      status.textContent = "";
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        });
+        if (!response.ok) throw new Error(String(response.status));
+        form.reset();
+        status.dataset.state = "ok";
+        status.textContent = "Mensagem enviada. Retornaremos o contato em breve.";
+      } catch {
+        status.dataset.state = "error";
+        status.textContent = "A mensagem não foi enviada. Tente de novo ou chame no WhatsApp.";
+      } finally {
+        button.disabled = false;
+        button.textContent = "Enviar mensagem";
+      }
+    });
+  }
+</script>
+
+<style>
+  .contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.1rem 1.25rem;
+  }
+  .field {
+    display: grid;
+    gap: 0.4rem;
+  }
+  .wide {
+    grid-column: 1 / -1;
+  }
+  label {
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .opt {
+    font-weight: 350;
+    color: var(--ink-mute);
+  }
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+    font-size: 1rem;
+    transition: border-color 140ms ease;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+  input:hover,
+  textarea:hover {
+    border-color: #c8ccd6;
+  }
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgb(255 96 0 / 0.2);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    margin-top: 0.4rem;
+  }
+  .status {
+    font-size: 0.95rem;
+  }
+  .status[data-state="ok"] {
+    color: #1d7a46;
+  }
+  .status[data-state="error"] {
+    color: #b42318;
+  }
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .dark label {
+    color: var(--on-night);
+  }
+  .dark .opt {
+    color: var(--on-night-soft);
+  }
+  .dark input,
+  .dark textarea {
+    background: var(--night-2);
+    border-color: var(--night-line);
+    color: var(--on-night);
+  }
+  .dark input:hover,
+  .dark textarea:hover {
+    border-color: #4a5063;
+  }
+  .dark .status[data-state="ok"] {
+    color: #6ee7a8;
+  }
+  .dark .status[data-state="error"] {
+    color: #ff9b8f;
+  }
+
+  @media (max-width: 600px) {
+    .contact-form {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# www.linqcode.com.br
 
-## Getting Started
+Site institucional da Linqcode, feito em [Astro](https://astro.build) e publicado como arquivos estáticos no Azure Static Web Apps (`swa-linqcode-site`), com a Function de contato em `api/`.
 
-First, run the development server:
+## Rodar
 
 ```bash
-npm run dev
-# or
-yarn dev
+npm ci
+npm run dev      # http://localhost:4321
+npm run build    # gera dist/ e roda scripts/check-build.mjs
+npm run preview  # serve dist/
+node --test api/test/*.test.js   # testes da Function (rode antes `npm ci --prefix api`)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Onde mudar o conteúdo
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- `src/data/site.ts`: telefone, e-mail, redes, textos de todas as páginas, serviços (as quatro entregas e o núcleo de IA e cloud).
+- `src/data/clients.ts`: clientes e logos (`src/assets/clients/`).
+- As páginas, o JSON-LD, o `llms.txt`, o `llms-full.txt` e o sitemap leem desses arquivos.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## O que o build entrega
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- HTML pronto, sem JavaScript de framework; scripts só no menu do celular, no formulário e no Google Analytics (carregado depois da página).
+- Imagens em AVIF e WebP no tamanho de cada tela (`astro:assets`); fonte Outfit servida pelo próprio site.
+- SEO: título, descrição e URL canônica por página, Open Graph e Twitter Card (`public/og/`), JSON-LD de Organization, Service e BreadcrumbList, `sitemap-index.xml` e `robots.txt`.
+- Leitura por IA: `/llms.txt` (mapa do site) e `/llms-full.txt` (todo o conteúdo em Markdown).
+- `public/staticwebapp.config.json`: cache longo para `/_astro/*`, cabeçalhos de segurança, redirecionamentos e a página 404.
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+`.github/workflows/azure-static-web-apps.yml`: push na `master` publica em produção; cada pull request ganha uma URL de prévia no Static Web Apps, apagada quando o PR fecha.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+O formulário envia pela Microsoft Graph com as configurações `EMAIL_SERVICE_*` do Static Web Apps.
