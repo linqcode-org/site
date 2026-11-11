@@ -11,6 +11,9 @@ import { servicesLd } from "../data/structured";
 import funeraria from "../assets/clients/logo-funeraria.png";
 
 const homeClients = clients.filter((c) => c.onHome);
+// Full rows only: 4 columns when the count allows it, otherwise 3 (e.g. nine logos = 3 x 3).
+const logoCols = homeClients.length % 4 === 0 ? 4 : 3;
+const logoColsNarrow = homeClients.length % 3 === 0 ? 3 : 2;
 // Short names the old home page used for the four services; the hero places one at each petal.
 const petalLabels = ["Web sites", "E-commerce", "Mobile", "Custom app"];
 ---
@@ -162,7 +165,7 @@ const petalLabels = ["Web sites", "E-commerce", "Mobile", "Custom app"];
         <h2>Nossos clientes</h2>
         <a class="text-link" href="/clientes">Ver todos os clientes</a>
       </div>
-      <ul class="logo-wall">
+      <ul class="logo-wall" style={`--cols: ${logoCols}; --cols-narrow: ${logoColsNarrow}`}>
         {
           homeClients.map((c) => (
             <li>
@@ -504,7 +507,7 @@ const petalLabels = ["Web sites", "E-commerce", "Mobile", "Custom app"];
     padding: 0;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--cols, 4), 1fr);
     border-top: 1px solid var(--line);
     border-left: 1px solid var(--line);
   }
@@ -588,7 +591,11 @@ const petalLabels = ["Web sites", "E-commerce", "Mobile", "Custom app"];
       width: min(100%, 320px);
     }
     .logo-wall {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(var(--cols-narrow, 2), 1fr);
+    }
+    .logo-wall img {
+      max-width: 100%;
+      height: 44px;
     }
   }
   @media (max-width: 640px) {

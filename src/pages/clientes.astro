@@ -44,15 +44,19 @@ import { breadcrumbLd } from "../data/structured";
 </Base>
 
 <style>
+  /* Rows are centred, so an incomplete last row sits in the middle instead of trailing on the left. */
   .logo-grid {
+    --per-row: 6;
     margin: 0;
     padding: 0;
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
   }
   .logo-grid li {
+    flex: 0 0 calc((100% - (var(--per-row) - 1) * 1rem) / var(--per-row));
     display: grid;
     justify-items: center;
     align-content: center;
@@ -65,9 +69,22 @@ import { breadcrumbLd } from "../data/structured";
   }
   .logo-grid img {
     width: auto;
-    max-width: 160px;
+    max-width: 100%;
     height: 64px;
     object-fit: contain;
+  }
+  @media (max-width: 1080px) {
+    .logo-grid {
+      --per-row: 4;
+    }
+  }
+  @media (max-width: 640px) {
+    .logo-grid {
+      --per-row: 2;
+    }
+    .logo-grid li {
+      min-height: 10rem;
+    }
   }
   .logo-grid span {
     font-weight: 500;
