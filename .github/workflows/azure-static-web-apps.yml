@@ -1,22 +1,30 @@
-# Builds the static export and ships it, with the contact Function in api/, to the
+# Builds the Astro site and ships dist/, with the contact Function in api/, to the
 # Azure Static Web Apps resource swa-linqcode-site (Free plan).
+# Pushes to master publish production; each pull request gets its own preview URL
+# (posted on the PR), removed when the PR closes.
 name: Deploy to Azure Static Web Apps
 
 on:
   push:
     branches:
       - master
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - master
   workflow_dispatch:
 
 permissions:
   contents: read
+  pull-requests: write
 
 concurrency:
-  group: static-web-apps
+  group: static-web-apps-${{ github.event.pull_request.number || 'production' }}
   cancel-in-progress: false
 
 jobs:
   deploy:
+    if: github.event_name != 'pull_request' || github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,18 +34,34 @@ jobs:
           node-version: '22.x'
           cache: npm
 
-      - name: Build the static export
+      - name: Build the site and check it
         run: |
           npm ci
           npm run build
-          test -f out/index.html
-          test -f out/staticwebapp.config.json
+          test -f dist/index.html
+          test -f dist/staticwebapp.config.json
+
+      - name: Test the contact Function
+        run: |
+          npm ci --prefix api
+          node --test api/test/*.test.js
 
       - name: Deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
-          app_location: out
+          app_location: dist
           api_location: api
           skip_app_build: true
+
+  close-preview:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove the preview environment
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: close

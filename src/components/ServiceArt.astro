@@ -28,7 +28,8 @@ const { service, size = 220, class: className } = Astro.props;
 <Picture
   src={art[service]}
   alt={alt[service]}
-  formats={["avif", "webp"]}
+  formats={["avif"]}
+  fallbackFormat="webp"
   widths={[size, size * 2]}
   sizes={`${size}px`}
   width={size}

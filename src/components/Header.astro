@@ -10,7 +10,7 @@ const path = Astro.url.pathname.replace(/\.html$/, "");
 <header class="site-header" data-open="false">
   <div class="wrap bar">
     <a class="brand" href="/" aria-label="Linqcode, página inicial">
-      <Image src={logo} alt="" width={124} height={32} loading="eager" fetchpriority="high" />
+      <Image src={logo} alt="" width={124} height={32} densities={[1, 2]} loading="eager" fetchpriority="high" />
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
       <span class="when-closed"><Icon name="menu" /><span class="visually-hidden">Abrir menu</span></span>

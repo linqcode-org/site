@@ -3,7 +3,7 @@
 :root {
   --ink: #191c24;
   --ink-soft: #4a4f5c;
-  --ink-mute: #6b7080;
+  --ink-mute: #5b606d;
   --paper: #ffffff;
   --mist: #f3f4f6;
   --line: #e2e4ea;
@@ -170,14 +170,19 @@ a {
   height: 1.15em;
   flex: none;
 }
+/* Ink on orange, like the wordmark: 6:1, where white on #FF6000 would be only 3:1. */
 .btn-primary {
   background: var(--orange);
-  color: #fff;
-  /* White on #FF6000 is 3:1; the weight and size keep it in "large text" territory. */
+  color: var(--ink);
   font-weight: 600;
 }
 .btn-primary:hover {
-  background: #e85600;
+  background: var(--ink);
+  color: #fff;
+}
+.on-night .btn-primary:hover {
+  background: #fff;
+  color: var(--ink);
 }
 .btn-quiet {
   border-color: currentColor;

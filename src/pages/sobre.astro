@@ -33,7 +33,8 @@ const art = {
               <Picture
                 src={art[c.key as keyof typeof art].src}
                 alt={art[c.key as keyof typeof art].alt}
-                formats={["avif", "webp"]}
+                formats={["avif"]}
+                fallbackFormat="webp"
                 widths={[220, 440]}
                 sizes="220px"
                 width={220}
